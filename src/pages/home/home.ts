@@ -13,8 +13,14 @@ export class HomePage {
 
   constructor(private app:App,private auth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController) {
-
   }
+
+  ionViewDidLoad(){
+    if (this.auth.auth.currentUser != null ){
+      this.app.getRootNav().setRoot('HometabPage');
+    }
+  }
+
   async login(user: User){
     try {
       const res = this.auth.auth.signInWithEmailAndPassword(user.email,user.password);
@@ -22,6 +28,7 @@ export class HomePage {
         this.app.getRootNav().setRoot('HometabPage');
       }
     } catch (e) {
+      //TODO ALERTS DE ERRORES
       console.error(e);
     }
   }

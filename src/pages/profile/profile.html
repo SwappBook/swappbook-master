@@ -22,9 +22,10 @@
 
 
 <ion-content padding>
-  <img src="assets/img/q256_avatar.png" style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
+  <img src='{{ profilePhoto }}' style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
+  <button ion button (click)="selectPhoto()">Seleccionar foto</button>
   <h3 style="color:#000000;text-align:center;">
-    NOMBRE USUARIO
+    {{userData.name}}
   </h3>
   <div>
       <button ion-button color="assertive" style="text-align:left;">
@@ -36,6 +37,10 @@
       <button ion-button color="assertive" style="color:#FDFAFD;text-align:left;">
         Historial
       </button>
-      <div class="spacer" style="width:100%;height:500px;background-color: aqua;"></div>
+      <ion-list>
+        <ion-item>
+          HOLA
+        </ion-item>
+      </ion-list>
     </div>
 </ion-content>

@@ -1,3 +1,4 @@
+import { UserService } from './../service/user-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
@@ -11,7 +12,10 @@ import { SplashPage } from '../pages/splash/splash';
 import { AngularFireModule } from "angularfire2";
 import { AngularFireDatabaseModule } from "angularfire2/database";
 import { AngularFireAuthModule } from "angularfire2/auth";
+import { AngularFireStorageModule } from "angularfire2/storage";
 
+import { Camera } from "@ionic-native/camera";
+import { ImageProvider } from "../service/image-provider";
 import { ProductListService } from "../service/product-list.service";
 
 var config = {
@@ -34,7 +38,8 @@ var config = {
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -45,8 +50,11 @@ var config = {
   providers: [
     StatusBar,
     SplashScreen,
+    Camera,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ProductListService
+    ProductListService,
+    ImageProvider,
+    UserService
   ]
 })
 export class AppModule {}
