@@ -12,6 +12,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 export class HomePage {
 
   user = {} as User;
+  
   constructor(private app:App,private auth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,
     public alertCtrl: AlertController) {
   }
