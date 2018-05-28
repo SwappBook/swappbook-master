@@ -22,15 +22,29 @@
           Añadir libro por codigo QR
         </ion-item>
       </ion-list>
+<<<<<<< HEAD
       
+=======
+
+      <div class="header-banner" *ngIf="hide">
+          <ion-slides class="home-slide" pager="true">
+            <ion-slide *ngFor="let slide of slideData">
+              <img src="{{slide}}"/>
+            </ion-slide>
+          </ion-slides>
+      </div>
+
+      <button ion button (click)="selectPhoto()">Seleccionar foto</button>
+
+>>>>>>> Miguel
       <form>
         <ion-item>
           <ion-label></ion-label>
-          <ion-input type="text" [(ngModel)]="product.titulo" [ngModelOptions]="{standalone: true}" placeholder="Titulo"></ion-input>
+          <ion-input type="text" [(ngModel)]="product.titulo" [ngModelOptions]="{standalone: true}" placeholder="Titulo" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label></ion-label>
-          <ion-input type="text" [(ngModel)]="product.autor" [ngModelOptions]="{standalone: true}" placeholder="Autor"></ion-input>
+          <ion-input type="text" [(ngModel)]="product.autor" [ngModelOptions]="{standalone: true}" placeholder="Autor" required></ion-input>
         </ion-item>
         <ion-item>
           <ion-label></ion-label>
