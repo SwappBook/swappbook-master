@@ -9,7 +9,6 @@
   <ion-navbar>
     <ion-title>Profile</ion-title>
     <ion-buttons end right>
-      <button ion-button icon-only>
         <ion-icon name="settings"></ion-icon>
       </button>
       <button ion-button icon-only (click)="logout()">
@@ -21,6 +20,7 @@
 </ion-header>
 
 
+<<<<<<< HEAD
 <ion-content padding>
   <img src='{{ profilePhoto }}' style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
   <button ion button (click)="selectPhoto()">Seleccionar foto</button>
@@ -43,4 +43,29 @@
         </ion-item>
       </ion-list>
     </div>
+=======
+<ion-content class="card">
+ <ion-card text-center class="hide-card">
+        <img src="{{ profilePhoto }}" class="custom-avatar"/>
+    <h2> {{userData.name}}</h2>
+    <button ion-button icon-only outline color="ourColor" id="cameraBtn" (click)="selectPhoto()">
+        <ion-icon name="camera" id="cameraIcon"></ion-icon>
+    </button>
+</ion-card>
+
+   
+
+ <!-- <ion-item class="image">
+  <img src='{{ profilePhoto }}' class="circle-pic" style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
+</ion-item> 
+  <button ion button (click)="selectPhoto()">Seleccionar foto</button> -->
+  <ion-grid class="button-group">
+      <ion-row >
+       <ion-col ><button ion-button color="ourColor" style="width:100%">Mis libros
+       </button></ion-col>
+       <ion-col ><button ion-button color="ourColor" style="width:100%">Favoritos</button></ion-col>
+       <ion-col ><button ion-button color="ourColor" style="width:100%">Historial</button></ion-col>
+     </ion-row>
+     </ion-grid>
+>>>>>>> Diego
 </ion-content>

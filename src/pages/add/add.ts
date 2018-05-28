@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ProductListService } from '../../service/product-list.service';
@@ -17,13 +18,16 @@ import { Product } from '../../models/product';
 })
 export class AddPage {
 
-  product = {} as Product
+  product = {} as Product;
+  userid:string;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private productListService: ProductListService) {
+  private productListService: ProductListService, private aut: AngularFireAuth) {
   }
 
   ionViewDidLoad() {
+    this.product.user_id = this.aut.auth.currentUser.uid;
   }
 
   addProduct(prod: Product) {
