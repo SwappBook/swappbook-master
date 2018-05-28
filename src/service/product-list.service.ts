@@ -1,15 +1,17 @@
+import { ProductWithImage } from './../models/product';
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import { Product } from "../models/product";
 
 @Injectable()
 export class ProductListService {
+    private productListRefWithImages = this.db.list<ProductWithImage>('productos');
     private productListRef = this.db.list<Product>('productos');
 
     constructor(private db: AngularFireDatabase) {}
 
     getProductList() {
-        return this.productListRef;
+        return this.productListRefWithImages;
     }
 
     addProduct(prod: Product) {

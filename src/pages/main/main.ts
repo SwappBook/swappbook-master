@@ -1,7 +1,8 @@
+import { AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { Product } from '../../models/product';
+import { ProductWithImage } from '../../models/product';
 import { ProductListService } from '../../service/product-list.service';
 
 /**
@@ -18,10 +19,11 @@ import { ProductListService } from '../../service/product-list.service';
 })
 export class MainPage {
 
-  prodList: Observable<Product[]>
+  prodList: Observable<ProductWithImage[]>;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-  private productListService: ProductListService) {
+  private productListService: ProductListService,
+  private db: AngularFireDatabase) {
     this.prodList = this.productListService.getProductList()
     .snapshotChanges()
     .map(
@@ -38,4 +40,16 @@ export class MainPage {
   ionViewDidLoad() {
   }
 
+  getImages(key:string): any[]{
+    var items = []
+
+    this.db.database.ref('productos/'+key+'/images_products').on('value', res => {
+      res.forEach(itemSnap => {
+        items.push(itemSnap.val())
+        return false
+      })
+    })
+    
+    return items
+  }
 }

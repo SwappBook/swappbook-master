@@ -14,6 +14,13 @@
 
 
 <ion-content padding>
+    <div class="header-banner">
+        <ion-slides class="home-slide" pager="true">
+          <ion-slide *ngFor="let slide of slideData">
+            <img src="{{slide}}"/>
+          </ion-slide>
+        </ion-slides>
+      </div>
   <ion-item>
     <ion-label>{{prod?.titulo}}</ion-label>
   </ion-item>

@@ -15,7 +15,8 @@ import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireStorageModule } from "angularfire2/storage";
 
 import { Camera } from "@ionic-native/camera";
-import { ImageProvider } from "../service/image-provider";
+import { ImageProvider } from "../service/image-provider-profile";
+import { ImageProviderProduct } from "../service/image-provider-products";
 import { ProductListService } from "../service/product-list.service";
 
 var config = {
@@ -54,6 +55,7 @@ var config = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ProductListService,
     ImageProvider,
+    ImageProviderProduct,
     UserService
   ]
 })

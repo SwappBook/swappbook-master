@@ -17,12 +17,14 @@ import { Product } from '../../models/product';
 export class InfoLibroPage {
 
   prod = {} as Product;
+  slideData = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
     this.prod = this.navParams.get('prod');
+    this.slideData = this.navParams.get('slideData');
   }
 
 }

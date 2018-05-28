@@ -1,6 +1,6 @@
 import { UserService } from './../../service/user-service';
 import { UserLoged } from './../../models/user';
-import { ImageProvider } from './../../service/image-provider';
+import { ImageProvider } from './../../service/image-provider-profile';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
