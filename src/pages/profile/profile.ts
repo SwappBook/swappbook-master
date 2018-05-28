@@ -1,3 +1,6 @@
+import { UserService } from './../../service/user-service';
+import { UserLoged } from './../../models/user';
+import { ImageProvider } from './../../service/image-provider';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -17,13 +20,30 @@ import { HomePage } from '../home/home';
 })
 export class ProfilePage {
 
+  profilePhoto: String;
+  userData = {} as UserLoged;
+
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private app:App,
-  private afAuth: AngularFireAuth) {
+  private afAuth: AngularFireAuth,
+  private image: ImageProvider,
+  private userdb: UserService) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    this.image.getImage().then( () => {
+      this.profilePhoto = this.image.cameraImage;
+    });
+    //https://aiaa.nmsu.edu/files/2016/09/noprofile.gif
+    this.userdb.getUserData().on('value', snap => {
+      this.userData = snap.val();
+    })
+  }
+
+  selectPhoto(){
+    this.image.getImageGallery().then(res => {
+      this.profilePhoto = this.image.cameraImage
+    });
   }
 
   async logout(): Promise<any>{

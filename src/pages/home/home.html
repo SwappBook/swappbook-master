@@ -1,29 +1,39 @@
 <ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      LOGIN
-    </ion-title>
-  </ion-navbar>
+ 
 </ion-header>
 
-<ion-content padding>
+<ion-content padding no-lines>
+
+    <ion-item no-lines>
+      <img class="logo" src="assets/imgs/logo.png"> 
+    </ion-item>
   
-    <ion-item>
-      <ion-label floating>Email:</ion-label>
-      <ion-input type="text" [(ngModel)]="user.email"></ion-input>
+    <ion-item  no-lines id="rounded">
+    
+      <ion-input id="emailInput" type="text" placeholder="Email:" [(ngModel)]="user.email" clearInput="true"></ion-input>
     </ion-item>
     
-    <ion-item>
-        <ion-label floating>Password:</ion-label>
-        <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    <ion-item no-lines id="rounded">
+       
+        <ion-input type="password" [(ngModel)]="user.password" placeholder="Password:" clearInput="true"></ion-input>
     </ion-item>
   
-    <button ion-button (click)="login(user)" style="margin: auto;
+    <button color="ourColor" ion-button (click)="login(user)" style="margin: auto;
     display: block;margin-top:5%;width:70%;">LOGIN</button>
-  
+
+    <button color="ourColor" ion-button (click)="login(user)" style="margin: auto;
+    display: block;margin-top:5%;width:70%;">
+    <ion-avatar item-start id="gPlus">
+      <img src="assets/imgs/google.png">
+    </ion-avatar>
+   </button>
+ 
     
   </ion-content>
   
-  <ion-footer>
-      <button style="width: 100%" ion-button (click)="register()">REGISTER</button>
+  <ion-footer no-lines>
+ <ion-item no-lines id="itemNewUser">
+      <span no-lines id="newUser">New User? Sign Up</span>
+    </ion-item>
+      <button  color="ourColor" style="width: 100%" ion-button (click)="register()">REGISTER</button>
   </ion-footer>

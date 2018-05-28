@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Profile</ion-title>
     <ion-buttons end right>
-      <button ion-button icon-only>
+      <button ion-button icon-only detail-push navPush="EditProfilePage">
         <ion-icon name="settings"></ion-icon>
       </button>
       <button ion-button icon-only (click)="logout()">
@@ -21,21 +21,27 @@
 </ion-header>
 
 
-<ion-content padding>
-  <img src="assets/img/q256_avatar.png" style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
-  <h3 style="color:#000000;text-align:center;">
-    NOMBRE USUARIO
-  </h3>
-  <div>
-      <button ion-button color="assertive" style="text-align:left;">
-        Libros
-      </button>
-      <button ion-button color="assertive">
-        Deseos
-      </button>
-      <button ion-button color="assertive" style="color:#FDFAFD;text-align:left;">
-        Historial
-      </button>
-      <div class="spacer" style="width:100%;height:500px;background-color: aqua;"></div>
-    </div>
+<ion-content class="card">
+ <ion-card text-center class="hide-card">
+        <img src="{{ profilePhoto }}" class="custom-avatar"/>
+    <h2> {{userData.name}}</h2>
+    <button ion-button icon-only outline color="ourColor" id="cameraBtn" (click)="selectPhoto()">
+        <ion-icon name="camera" id="cameraIcon"></ion-icon>
+    </button>
+</ion-card>
+
+   
+
+ <!-- <ion-item class="image">
+  <img src='{{ profilePhoto }}' class="circle-pic" style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
+</ion-item> 
+  <button ion button (click)="selectPhoto()">Seleccionar foto</button> -->
+  <ion-grid class="button-group">
+      <ion-row >
+       <ion-col ><button ion-button color="ourColor" style="width:100%">Mis libros
+       </button></ion-col>
+       <ion-col ><button ion-button color="ourColor" style="width:100%">Favoritos</button></ion-col>
+       <ion-col ><button ion-button color="ourColor" style="width:100%">Historial</button></ion-col>
+     </ion-row>
+     </ion-grid>
 </ion-content>

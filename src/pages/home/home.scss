@@ -1,3 +1,42 @@
 page-home {
 
+.logo{
+    width: 70%;
+    margin-left: 15%;
+    margin-bottom: 5%;
+}
+
+#rounded{
+    //border-color: aqua;
+    border: 1px solid lightblue;
+   // background-color: lightgray;
+    width: 100%;
+    height: 9%;
+    -moz-border-radius: 50px;
+    -webkit-border-radius: 50px;
+    border-radius: 10px;
+    margin-bottom: 10px;  
+
+    #emailInput{
+        font-size: 20px; //sets text font size
+        ::placeholder {
+          font-size: 12px; //sets placeholder font size
+        }
+    }
+}
+
+#gPlus{
+    width: 40px;
+}
+
+#newUser{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.secondary{
+    background-color: red;
+}
 }

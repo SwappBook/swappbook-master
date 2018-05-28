@@ -1,0 +1,80 @@
+<!--
+  Generated template for the EditProfilePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons end right>
+        <button ion-button icon-only >
+          <ion-icon name="checkmark-circle-outline"></ion-icon>
+        </button>
+        
+      </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+    <div id="editarPerfil-container3">
+
+        <form id="edit-form" class="list">
+
+        <ion-item  no-lines id="rounded">
+             <ion-input id="" type="text" placeholder="Nombre:" clearInput="true"></ion-input>
+        </ion-item>
+
+        <ion-item  no-lines id="rounded">
+            <ion-input id="" type="text" placeholder="Apellido:" clearInput="true"></ion-input>
+       </ion-item>
+
+       <ion-item  no-lines id="rounded">
+          <ion-input id="" type="date"  clearInput="true"></ion-input>
+      </ion-item>
+
+      <ion-row>
+
+      <ion-col col-9 >
+            <ion-item  no-lines id="rounded2" >
+                <ion-input id="" type="text" placeholder="Codigo postal:" clearInput="true"></ion-input>
+            </ion-item>
+       
+      </ion-col>
+      <ion-col >
+          <button ion-button icon-only outline  id="zipCodeBtn">
+              <ion-icon name="locate" id="locateIcon" ></ion-icon>
+          </button>
+      </ion-col>
+      
+    </ion-row>
+            <h4 id="editarPerfil-heading2" style="color:#313A7E;font-weight:300;text-align:center;">Generos favoritos</h4>
+            <p style="color:#313A7E;font-weight:300;text-align:center;" >Por favor seleccione maximo 5 generos</p>
+            
+            <ion-item no-lines id="rounded">
+                <ion-label>Generos</ion-label>
+                <ion-select  multiple="true" placeholder="Opciones">
+                  <ion-option>Thriller</ion-option>
+                  <ion-option>Romántica</ion-option>
+                  <ion-option>Aventura</ion-option>
+                  <ion-option>Terror</ion-option>
+                  <ion-option>Ciencia Ficción</ion-option>
+                  <ion-option>Investigación</ion-option>
+                  <ion-option>Biográfica</ion-option>
+                  <ion-option>Infantil</ion-option>
+                  <ion-option>Autoayuda</ion-option>
+                  <ion-option>Erótica</ion-option>
+                  <ion-option>Hogar</ion-option>
+                  <ion-option>Enciclopedia</ion-option>
+                  <ion-option>Política</ion-option>
+                  <ion-option>Sociedad</ion-option>
+                  <ion-option>Deportes</ion-option>
+                  <ion-option>Viajes</ion-option>
+                  <ion-option>Otros</ion-option>
+                </ion-select>
+              </ion-item>
+          </form>
+        </div>
+</ion-content>
