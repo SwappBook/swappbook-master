@@ -1,3 +1,4 @@
+import { ChatListService } from './../service/message-list';
 import { UserService } from './../service/user-service';
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
@@ -56,7 +57,8 @@ var config = {
     ProductListService,
     ImageProvider,
     ImageProviderProduct,
-    UserService
+    UserService,
+    ChatListService
   ]
 })
 export class AppModule {}

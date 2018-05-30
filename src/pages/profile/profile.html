@@ -21,30 +21,6 @@
 </ion-header>
 
 
-<<<<<<< HEAD
-<ion-content padding>
-  <img src='{{ profilePhoto }}' style="display:block;width:35%;height:25%;margin-left:auto;margin-right:auto;" />
-  <button ion button (click)="selectPhoto()">Seleccionar foto</button>
-  <h3 style="color:#000000;text-align:center;">
-    {{userData.name}}
-  </h3>
-  <div>
-      <button ion-button color="assertive" style="text-align:left;">
-        Libros
-      </button>
-      <button ion-button color="assertive">
-        Deseos
-      </button>
-      <button ion-button color="assertive" style="color:#FDFAFD;text-align:left;">
-        Historial
-      </button>
-      <ion-list>
-        <ion-item>
-          HOLA
-        </ion-item>
-      </ion-list>
-    </div>
-=======
 <ion-content class="card">
  <ion-card text-center class="hide-card">
         <img src="{{ profilePhoto }}" class="custom-avatar"/>
@@ -62,11 +38,16 @@
   <button ion button (click)="selectPhoto()">Seleccionar foto</button> -->
   <ion-grid class="button-group">
       <ion-row >
-       <ion-col ><button ion-button color="ourColor" style="width:100%">Mis libros
+       <ion-col ><button ion-button color="ourColor" style="width:100%" (click)="getLibrosUser()">Mis libros
        </button></ion-col>
        <ion-col ><button ion-button color="ourColor" style="width:100%">Favoritos</button></ion-col>
        <ion-col ><button ion-button color="ourColor" style="width:100%">Historial</button></ion-col>
      </ion-row>
-     </ion-grid>
->>>>>>> Diego
+  </ion-grid>
+
+  <ion-list>
+    <ion-item *ngFor="let prod of userLista">
+      {{prod.titulo}}
+    </ion-item>
+  </ion-list>
 </ion-content>

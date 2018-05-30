@@ -1,3 +1,4 @@
+import { ImageProvider } from './../../service/image-provider-profile';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
@@ -23,7 +24,7 @@ export class MainPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private productListService: ProductListService,
-  private db: AngularFireDatabase) {
+  private db: AngularFireDatabase,private image:ImageProvider) {
     this.prodList = this.productListService.getProductList()
     .snapshotChanges()
     .map(
@@ -35,6 +36,7 @@ export class MainPage {
         )
       }
     );
+    image.getImage();
   }
 
   ionViewDidLoad() {

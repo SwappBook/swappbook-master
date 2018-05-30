@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-=======
 import { ImageProviderProduct } from './../../service/image-provider-products';
->>>>>>> Miguel
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
@@ -24,12 +21,6 @@ export class AddPage {
 
   product = {} as Product;
   userid:string;
-<<<<<<< HEAD
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  private productListService: ProductListService, private aut: AngularFireAuth) {
-=======
   public hide : boolean = false;
   slideData = [];
 
@@ -38,13 +29,10 @@ export class AddPage {
               private productListService: ProductListService,
               private aut: AngularFireAuth,
               private image: ImageProviderProduct) {
->>>>>>> Miguel
   }
 
   ionViewDidLoad() {
     this.product.user_id = this.aut.auth.currentUser.uid;
-<<<<<<< HEAD
-=======
   }
 
   selectPhoto(){
@@ -52,7 +40,6 @@ export class AddPage {
       this.hide = true;
       this.slideData.push(this.image.cameraImage);
     })
->>>>>>> Miguel
   }
 
   addProduct(prod: Product) {

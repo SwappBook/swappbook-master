@@ -24,4 +24,7 @@
   <ion-item>
     <ion-label>{{prod?.titulo}}</ion-label>
   </ion-item>
+  <div *ngIf="hide">
+    <button (click)="runChat()">Chat</button>
+  </div>
 </ion-content>

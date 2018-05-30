@@ -5,6 +5,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
+import { Observable } from 'rxjs/Observable';
+import { ProductWithImage } from '../../models/product';
 
 /**
  * Generated class for the ProfilePage page.
@@ -20,6 +22,8 @@ import { HomePage } from '../home/home';
 })
 export class ProfilePage {
 
+  prodList: Observable<ProductWithImage[]>;
+  userLista: ProductWithImage[] = [];
   profilePhoto: String;
   userData = {} as UserLoged;
 
@@ -30,14 +34,27 @@ export class ProfilePage {
   private userdb: UserService) {
   }
 
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.ionViewDidLoad();
+  }
   ionViewDidLoad() {
-    this.image.getImage().then( () => {
-      this.profilePhoto = this.image.cameraImage;
-    });
-    //https://aiaa.nmsu.edu/files/2016/09/noprofile.gif
+    this.prodList = this.navParams.get('prodList');
+    this.profilePhoto = this.image.cameraImage;
     this.userdb.getUserData().on('value', snap => {
       this.userData = snap.val();
     })
+  }
+
+  getLibrosUser(){
+    this.prodList.forEach(element => {
+      element.forEach(res => {
+        if (res.user_id == this.afAuth.auth.currentUser.uid){
+          this.userLista.push(res)
+        }
+      });
+    });
   }
 
   selectPhoto(){

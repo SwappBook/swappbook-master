@@ -2,8 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, App } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
-
-
+import { UserService } from '../../service/user-service';
 
 @Component({
   selector: 'page-home',
@@ -24,29 +23,16 @@ export class HomePage {
   }
 
   async login(user: User){
-<<<<<<< HEAD
-    try {
-      const res = this.auth.auth.signInWithEmailAndPassword(user.email,user.password);
-      if (res){
-        this.app.getRootNav().setRoot('HometabPage');
-      }
-    } catch (e) {
-      //TODO ALERTS DE ERRORES
-      console.error(e);
-    }
-=======
 
     if (user.email=="" && user.password=="" ){
-       this.presentAlert("werewr");
+       this.presentAlert("Rellena los campos vacíos.");
     }else{
       this.auth.auth.signInWithEmailAndPassword(user.email,user.password).then(res =>{
         this.app.getRootNav().setRoot('HometabPage');  
       }).catch(e=> {
         this.presentAlert(e.message)
-        
       });  
     }  
->>>>>>> Diego
   }
 
   register(){

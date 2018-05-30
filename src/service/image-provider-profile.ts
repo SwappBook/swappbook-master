@@ -65,11 +65,18 @@ export class ImageProvider {
 
     getImage():Promise<any>{
         return new Promise(resolve => {
-            const pic = this.storage.ref('profiles').child(this.auth.auth.currentUser.uid).getDownloadURL();
-            pic.forEach(element => {
-                this.cameraImage = element;
-                resolve(this.cameraImage)
-            });
+            try {
+                const pic = this.storage.ref('profiles').child(this.auth.auth.currentUser.uid).getDownloadURL();
+                if (pic != null){
+                    pic.forEach(element => {
+                        this.cameraImage = element;
+                        resolve(this.cameraImage)
+                    });
+                }
+            } catch(e){
+                this.cameraImage = "https://aiaa.nmsu.edu/files/2016/09/noprofile.gif";
+                resolve(this.cameraImage);
+            }
         })
     }
 }
