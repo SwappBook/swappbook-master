@@ -2,6 +2,7 @@ import { ProductWithImage } from './../models/product';
 import { Injectable } from "@angular/core";
 import { AngularFireDatabase } from "angularfire2/database";
 import { Product } from "../models/product";
+import { AngularFireAuth } from 'angularfire2/auth';
 
 @Injectable()
 export class ProductListService {

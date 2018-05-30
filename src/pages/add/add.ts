@@ -1,12 +1,13 @@
-<<<<<<< HEAD
-=======
 import { ImageProviderProduct } from './../../service/image-provider-products';
->>>>>>> Miguel
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Slides } from 'ionic-angular';
 import { ProductListService } from '../../service/product-list.service';
 import { Product } from '../../models/product';
+import { Geolocation } from '@ionic-native/geolocation';
+import { UserService } from '../../service/user-service';
+import { UserLoged } from '../../models/user';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 /**
  * Generated class for the AddPage page.
@@ -20,31 +21,41 @@ import { Product } from '../../models/product';
   selector: 'page-add',
   templateUrl: 'add.html',
 })
+
 export class AddPage {
 
   product = {} as Product;
   userid:string;
-<<<<<<< HEAD
-
-
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-  private productListService: ProductListService, private aut: AngularFireAuth) {
-=======
   public hide : boolean = false;
-  slideData = [];
+  slideData = []
+  userData = {} as UserLoged
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
+              private userdb:UserService,
               private productListService: ProductListService,
               private aut: AngularFireAuth,
-              private image: ImageProviderProduct) {
->>>>>>> Miguel
+              private image: ImageProviderProduct,
+              private geolocation: Geolocation,
+              private barcodeScanner: BarcodeScanner
+            ) {            
   }
 
-  ionViewDidLoad() {
+ ionViewDidLoad() {
     this.product.user_id = this.aut.auth.currentUser.uid;
-<<<<<<< HEAD
-=======
+
+    this.userdb.getUserData().on('value', snap => {
+      this.userData = snap.val();
+    })
+  }
+
+  readBarcode(){
+    this.barcodeScanner.scan().then(barcodeData => {
+      
+      alert(barcodeData.text);
+     }).catch(err => {
+         console.log('Error', err);
+     });
   }
 
   selectPhoto(){
@@ -52,10 +63,11 @@ export class AddPage {
       this.hide = true;
       this.slideData.push(this.image.cameraImage);
     })
->>>>>>> Miguel
   }
 
   addProduct(prod: Product) {
+    prod.latitude = this.userData.latitude
+    prod.longitude = this.userData.longitude
     this.productListService.addProduct(prod).then(ref => {
       var i = 1;
       this.slideData.forEach(element => {

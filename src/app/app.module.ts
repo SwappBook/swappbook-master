@@ -18,6 +18,10 @@ import { Camera } from "@ionic-native/camera";
 import { ImageProvider } from "../service/image-provider-profile";
 import { ImageProviderProduct } from "../service/image-provider-products";
 import { ProductListService } from "../service/product-list.service";
+import { EditProfileService } from '../service/edit-profile-service';
+import { Geolocation } from '@ionic-native/geolocation';
+import { GoogleMaps } from  '@ionic-native/google-maps'
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 var config = {
   apiKey: "AIzaSyDDHvxIK0XXCrtWDXVY8fMKrCnXOKr0VE4",
@@ -56,7 +60,11 @@ var config = {
     ProductListService,
     ImageProvider,
     ImageProviderProduct,
-    UserService
+    UserService,
+    EditProfileService,
+    Geolocation,
+    GoogleMaps,
+    BarcodeScanner
   ]
 })
 export class AppModule {}

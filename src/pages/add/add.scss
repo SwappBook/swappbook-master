@@ -1,8 +1,13 @@
 page-add {
     .header-banner{
-		
 		height:auto;
-        min-height:150px;
+		min-height:150px;
+		background-color: blue;
+	}
+
+	#sliderContent{
+		height: 45vw;
+		background-color: grey;
 	}
 
 	.slide-zoom {
@@ -13,5 +18,30 @@ page-add {
 
        ion-slides {
           height: auto;
-       }
+	   }
+
+	#qrContent{
+		height: 10vw;
+	}
+
+	#qrIcon{
+		margin-left: 2vw;
+		margin-top: 2vw;
+	}
+	   
+	#qrBtn{
+		width: 11vw;
+		height: 11vw;
+		border-radius: 50%;
+		border-color: red;
+		border: 1px solid red !important;
+		-webkit-box-shadow: none !important;
+	   background: transparent;  
+	}
+
+	#qrText{
+		font-size: 11pt;
+	}
+
+
 }

@@ -24,17 +24,6 @@ export class HomePage {
   }
 
   async login(user: User){
-<<<<<<< HEAD
-    try {
-      const res = this.auth.auth.signInWithEmailAndPassword(user.email,user.password);
-      if (res){
-        this.app.getRootNav().setRoot('HometabPage');
-      }
-    } catch (e) {
-      //TODO ALERTS DE ERRORES
-      console.error(e);
-    }
-=======
 
     if (user.email=="" && user.password=="" ){
        this.presentAlert("werewr");
@@ -45,8 +34,7 @@ export class HomePage {
         this.presentAlert(e.message)
         
       });  
-    }  
->>>>>>> Diego
+    }
   }
 
   register(){

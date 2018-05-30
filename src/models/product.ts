@@ -6,8 +6,8 @@ export interface Product {
     categoria: string;
     descripcion: string;
     user_id:string;
-<<<<<<< HEAD
-=======
+    latitude: number;
+    longitude: number;
 }
 
 export interface ProductWithImage {
@@ -19,5 +19,7 @@ export interface ProductWithImage {
     descripcion: string;
     user_id:string;
     images_products: any[];
->>>>>>> Miguel
 }
+
+// crear interfaz que contenga los campos a editar
+// poner key pero no asignarle valor
