@@ -1,10 +1,10 @@
 import { UserService } from './../../service/user-service';
-import { UserLoged } from './../../models/user';
 import { ImageProvider } from './../../service/image-provider-profile';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { HomePage } from '../home/home';
+import { EditProfileService } from '../../service/edit-profile-service';
 import { Observable } from 'rxjs/Observable';
 import { ProductWithImage } from '../../models/product';
 
@@ -25,14 +25,14 @@ export class ProfilePage {
   prodList: Observable<ProductWithImage[]>;
   userLista: ProductWithImage[] = [];
   profilePhoto: String;
-  userData = {} as UserLoged;
+  userData = {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private app:App,
   private afAuth: AngularFireAuth,
   private image: ImageProvider,
-  private userdb: UserService) {
-  }
+  private userdb: UserService,
+  private profile: EditProfileService) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

@@ -9,7 +9,7 @@
   <ion-navbar>
     <ion-title>Edit Profile</ion-title>
     <ion-buttons end right>
-        <button ion-button icon-only >
+        <button ion-button icon-only (click)="saveData()">
           <ion-icon name="checkmark-circle-outline"></ion-icon>
         </button>
         
@@ -24,27 +24,19 @@
         <form id="edit-form" class="list">
 
         <ion-item  no-lines id="rounded">
-             <ion-input id="" type="text" placeholder="Nombre:" clearInput="true"></ion-input>
+             <ion-input id="" type="text" [(ngModel)]="editProfile.name" [ngModelOptions]="{standalone: true}" placeholder="Nombre:" clearInput="true"></ion-input>
         </ion-item>
-
-        <ion-item  no-lines id="rounded">
-            <ion-input id="" type="text" placeholder="Apellido:" clearInput="true"></ion-input>
-       </ion-item>
-
-       <ion-item  no-lines id="rounded">
-          <ion-input id="" type="date"  clearInput="true"></ion-input>
-      </ion-item>
 
       <ion-row>
 
       <ion-col col-9 >
             <ion-item  no-lines id="rounded2" >
-                <ion-input id="" type="text" placeholder="Codigo postal:" clearInput="true"></ion-input>
+                <ion-input id="" type="text" [(ngModel)]="editProfile.address" [ngModelOptions]="{standalone: true}" placeholder="Address:" clearInput="true"></ion-input>
             </ion-item>
        
       </ion-col>
       <ion-col >
-          <button ion-button icon-only outline  id="zipCodeBtn">
+          <button ion-button icon-only outline  id="zipCodeBtn" (click)="getLocate()">
               <ion-icon name="locate" id="locateIcon" ></ion-icon>
           </button>
       </ion-col>
@@ -55,7 +47,7 @@
             
             <ion-item no-lines id="rounded">
                 <ion-label>Generos</ion-label>
-                <ion-select  multiple="true" placeholder="Opciones">
+                <ion-select [(ngModel)]="editProfile.categorias" [ngModelOptions]="{standalone: true}" multiple="true" placeholder="Opciones">
                   <ion-option>Thriller</ion-option>
                   <ion-option>Romántica</ion-option>
                   <ion-option>Aventura</ion-option>

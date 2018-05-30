@@ -13,5 +13,6 @@ export interface UserRegister {
 export interface UserLoged {
     name: string;
     email: string;
-    password: string;
+    latitude: number;
+    longitude: number;
 }

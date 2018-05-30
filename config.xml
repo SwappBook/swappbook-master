@@ -87,5 +87,15 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="IGWorkshops requires access to the camera for taking pictures which will be added to the users in-app library" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="IGWorkshops requires access to the photo library for selecting images which will be added to the users in-app library" />
     </plugin>
-    <engine name="android" spec="~7.0.0" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-googlemaps" spec="https://github.com/mapsplugin/cordova-plugin-googlemaps#multiple_maps">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyA0BB8qqLPq6cGs7TTSTIUcuuUxaNcGOwU" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyC6zT_-nqyaibjSnJQZ09Fc4J7Ob2P42Bk" />
+        <variable name="PLAY_SERVICES_VERSION" value="15.0.1" />
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="26.1.0" />
+    </plugin>
+    <plugin name="phonegap-plugin-barcodescanner" spec="^7.1.2">
+        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
+    </plugin>
+    <engine name="android" spec="7.0.0" />
 </widget>

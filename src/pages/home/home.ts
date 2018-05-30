@@ -32,7 +32,7 @@ export class HomePage {
       }).catch(e=> {
         this.presentAlert(e.message)
       });  
-    }  
+    }
   }
 
   register(){

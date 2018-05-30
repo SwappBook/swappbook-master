@@ -6,6 +6,8 @@ export interface Product {
     categoria: string;
     descripcion: string;
     user_id:string;
+    latitude: number;
+    longitude: number;
 }
 
 export interface ProductWithImage {
@@ -18,3 +20,6 @@ export interface ProductWithImage {
     user_id:string;
     images_products: any[];
 }
+
+// crear interfaz que contenga los campos a editar
+// poner key pero no asignarle valor
