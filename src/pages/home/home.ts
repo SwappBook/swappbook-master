@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, App } from 'ionic-angular';
 import { User } from '../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
+import * as firebase from 'firebase/app';
 import { UserService } from '../../service/user-service';
 
 @Component({
@@ -17,9 +18,13 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-    if (this.auth.auth.currentUser != null ){
+    if (firebase.auth().currentUser != null ){
       this.app.getRootNav().setRoot('HometabPage');
     }
+  }
+
+  goLog(){
+    this.app.getRootNav().setRoot('HometabPage');
   }
 
   async login(user: User){
@@ -27,11 +32,14 @@ export class HomePage {
     if (user.email=="" && user.password=="" ){
        this.presentAlert("Rellena los campos vacíos.");
     }else{
-      this.auth.auth.signInWithEmailAndPassword(user.email,user.password).then(res =>{
-        this.app.getRootNav().setRoot('HometabPage');  
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(r => {
+        return firebase.auth().signInWithEmailAndPassword(user.email,user.password).then(res =>{
+          this.app.getRootNav().setRoot('HometabPage'); 
+        });
       }).catch(e=> {
+        console.log(e)
         this.presentAlert(e.message)
-      });  
+      }); 
     }
   }
 

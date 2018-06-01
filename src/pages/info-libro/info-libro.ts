@@ -30,6 +30,7 @@ export class InfoLibroPage {
   slideData = [];
   userData = {} as UserLoged;
   userRef: AngularFireList<any>;
+  userDbRef: AngularFireList<any>;
   privateUserRef: AngularFireList<any>;
   chatRooms: AngularFireList<any>;
 
@@ -88,12 +89,13 @@ export class InfoLibroPage {
   ionViewDidLoad() {
     this.prod = this.navParams.get('prod');
     this.slideData = this.navParams.get('slideData');
+    this.userRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/chatRooms');
+    this.userDbRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/saved');
+    this.privateUserRef = this.db.list('users/'+this.prod.user_id+'/chatRooms');
+    this.chatRooms = this.db.list('chatRooms');
     if (this.prod.user_id == this.auth.auth.currentUser.uid){
       this.hide = false;
     }
-    this.userRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/chatRooms');
-    this.privateUserRef = this.db.list('users/'+this.prod.user_id+'/chatRooms');
-    this.chatRooms = this.db.list('chatRooms');
   }
 
   runChat(){
@@ -107,6 +109,10 @@ export class InfoLibroPage {
       this.userRef.set(newKey,newKey);
       this.privateUserRef.set(newKey,newKey);
     });
+  }
+
+  saveBook(){
+    this.userDbRef.set(this.prod.key,this.prod.key);
   }
 
   getLocation(){
