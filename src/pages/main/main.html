@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary" >
     <ion-buttons start left>
       <button ion-button icon-only detail-push navPush="ProfilePage" [navParams]="{prodList:prodList}">
         <ion-icon name="person"></ion-icon>
@@ -23,18 +23,31 @@
 </ion-header>
 
 
-<ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let prod of prodList | async"
+<ion-content class="col">
+  <ion-row >
+    <ion-col  col-6 *ngFor="let prod of prodList | async"
     detail-push navPush="InfoLibroPage" [navParams]="{prod:prod,slideData:getImages(prod.key)}">
     <div class="header-banner">
       <ion-slides class="home-slide" pager="true">
         <ion-slide *ngFor="let slide of getImages(prod.key)" >
-          <img src="{{slide}}"/>
+          <img  class="image" src="{{slide}}"/>
         </ion-slide>
       </ion-slides>
     </div>
-      {{prod.titulo}}
-    </ion-item>
-  </ion-list>
+    <div class="info-item">
+      <div id="title">{{prod.titulo}}</div>
+      <div id="venta" *ngIf="prod.accion == 'Vendo'">
+        <span> Venta {{prod.precio}}</span>
+        <ion-icon name="logo-euro" color="primary"></ion-icon>
+      </div >
+      <div id="cambio" *ngIf="prod.accion == 'Cambio'">
+          <span >Cambio</span>
+        </div >
+        <div id="gratis" *ngIf="prod.accion == 'Gratis'">
+            <span >Gratis</span>
+          </div >
+    </div>
+      
+    </ion-col>
+  </ion-row> 
 </ion-content>

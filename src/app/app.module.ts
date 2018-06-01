@@ -23,6 +23,8 @@ import { EditProfileService } from '../service/edit-profile-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from  '@ionic-native/google-maps'
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { HttpClientModule } from '@angular/common/http';
+import { apiAmazonService } from "../service/api-amazon-service";
 
 var config = {
   apiKey: "AIzaSyDDHvxIK0XXCrtWDXVY8fMKrCnXOKr0VE4",
@@ -45,7 +47,8 @@ var config = {
     AngularFireModule.initializeApp(config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -66,7 +69,8 @@ var config = {
     EditProfileService,
     Geolocation,
     GoogleMaps,
-    BarcodeScanner
+    BarcodeScanner,
+    apiAmazonService
   ]
 })
 export class AppModule {}
