@@ -1,3 +1,85 @@
 page-main {
 
+    .md{
+        ion-title{
+            align-content: center !important;
+        }
+    }
+
+    .navBar{
+        background-color: #d32f2f;
+    }
+
+    .header-banner{
+       background-color: white;
+       border-top-left-radius: 10px;
+       border-top-right-radius: 10px;
+       box-shadow: 1px 1px 5px #bebebe;
+      // width: 80%;
+      // margin-left:10%;     
+    }
+
+    .image{
+       // height: 40vw;
+        width: 25vw;
+        margin: auto;
+        vertical-align: middle
+    }
+
+    .info-item{
+        margin-top: 2px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        background-color: white;  
+        height: 13vw;
+        box-shadow: 1px 1px 5px #bebebe;
+    }
+    .col{
+        background-color: #f3efee;
+      
+    }
+
+    #title{
+        width: 100%;
+        text-align: center;
+    }
+
+    #venta{
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        span{
+            font-weight: bold;
+            color: #d32f2f;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+    }
+    #cambio{
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        span{
+        
+            color: #14C1AD;
+           // font-size: 15pt;
+            font-weight: bold;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+        
+    }
+
+    #gratis{
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        span{
+           color: rgb(20, 101, 193);
+           // font-size: 15pt;
+            font-weight: bold;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+    }
+
 }
