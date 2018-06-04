@@ -20,6 +20,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ChatPage {
 
+  tabBarElement: any;
+
   chatKey:string;
   compradorKey:string;
   vendedorKey:string;
@@ -31,15 +33,28 @@ export class ChatPage {
               public navParams: NavParams,
               private db: AngularFireDatabase,
               private runChat: ChatListService,
-              private auth:AngularFireAuth) {
+              public auth:AngularFireAuth) {
+                this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ionViewDidLoad() {
+    this.tabBarElement.style.display = 'none'
     this.chatKey = this.navParams.get('chatKey');
     this.compradorKey = this.navParams.get('comprador');
     this.vendedorKey = this.navParams.get('vendedor');
     this.userID = this.auth.auth.currentUser.uid;
     this.message =  this.runChat.getMessageOfChatRoom(this.chatKey);
+  }
+
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
+  }
+
+  aceptarUser(){
+    this.db.database.ref('chatRooms/'+this.chatKey).update({'estado':true})
+    .then(res => {
+      this.navCtrl.pop();
+    });
   }
 
   sendMessage() {

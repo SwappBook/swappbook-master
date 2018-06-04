@@ -19,15 +19,26 @@ import { Observable } from 'rxjs/Observable';
 })
 export class SearcherPage {
 
+  tabBarElement: any;
+
   prodList: Observable<ProductWithImage[]>;
+  generalList:Array<ProductWithImage> = [];
+  FilterList:Array<ProductWithImage> = [];
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private db: AngularFireDatabase,
               private product:ProductListService) {
+                this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ionViewDidLoad() {
+    this.initializeItems();
+    this.tabBarElement.style.display = 'none'
+  }
+
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
   }
 
   initializeItems(): void {
@@ -42,36 +53,67 @@ export class SearcherPage {
         )
       }
     );
+
+    this.prodList.forEach(element => {
+      element.forEach(res => {
+        this.generalList.push(res)
+      });
+    });
+
+    this.igualarArrays();
+  }
+
+  igualarArrays(){
+    this.FilterList = this.generalList;
   }
 
   getItems(searchbar) {
-    // Reset items back to all of the items
-    this.initializeItems();
   
     // set q to the value of the searchbar
-    var q = searchbar.srcElement.value;
+    var q = searchbar.target.value;
   
   
     // if the value is an empty string don't filter the items
     if (!q) {
+      this.igualarArrays();
       return;
     }
-  
-    this.prodList = this.prodList.filter((v) => {
-      v.forEach(element => {
-        if(element.titulo && q) {
-          if (element.titulo.toLowerCase().indexOf(q.toLowerCase()) > -1) {
-            return true;
-          }
-        }
-      });
-      return false;
-    });
 
-    alert(this.prodList.forEach(element => {
-      element.forEach(r => {
-        r.titulo;
-      })
-    }))
+    this.FilterList = this.FilterList.filter((v) => {
+      if(v.titulo && q) {
+        if (v.titulo.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  }
+
+  getItemsAutor(searchbar) {
+  
+    // set q to the value of the searchbar
+    var q = searchbar.target.value;
+  
+  
+    // if the value is an empty string don't filter the items
+    if (!q) {
+      this.igualarArrays();
+      return;
+    }
+
+    this.FilterList = this.FilterList.filter((v) => {
+      if(v.autor && q) {
+        if (v.autor.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  }
+
+  buscar(){
+    this.FilterList.forEach(element => {
+      console.log(element.descripcion)
+    });  
   }
 }

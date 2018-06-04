@@ -1,3 +1,4 @@
+import { SavedListService } from './../service/saved-list-service';
 import { ChatListService } from './../service/message-list';
 import { UserService } from './../service/user-service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -22,9 +23,10 @@ import { ProductListService } from "../service/product-list.service";
 import { EditProfileService } from '../service/edit-profile-service';
 import { Geolocation } from '@ionic-native/geolocation';
 import { GoogleMaps } from  '@ionic-native/google-maps'
+import { GooglePlus } from "@ionic-native/google-plus";
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { HttpClientModule } from '@angular/common/http';
-import { apiAmazonService } from "../service/api-amazon-service";
+import { ApiGoogleBooks } from "../service/api-google-service";
 
 var config = {
   apiKey: "AIzaSyDDHvxIK0XXCrtWDXVY8fMKrCnXOKr0VE4",
@@ -69,8 +71,10 @@ var config = {
     EditProfileService,
     Geolocation,
     GoogleMaps,
+    GooglePlus,
     BarcodeScanner,
-    apiAmazonService
+    ApiGoogleBooks,
+    SavedListService
   ]
 })
 export class AppModule {}

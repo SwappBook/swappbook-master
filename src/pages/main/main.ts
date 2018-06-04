@@ -39,8 +39,7 @@ export class MainPage {
     image.getImage();
   }
 
-  ionViewDidLoad() {
-  }
+  ionViewDidLoad() {}
 
   getImages(key:string): any[]{
     var items = []

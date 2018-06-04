@@ -1,3 +1,4 @@
+import { ApiGoogleBooks } from './../../service/api-google-service';
 import { ImageProviderProduct } from './../../service/image-provider-products';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
@@ -25,6 +26,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 export class AddPage {
 
   product = {} as Product;
+  prod = []
   userid:string;
   public hide : boolean = false;
   slideData = []
@@ -37,7 +39,8 @@ export class AddPage {
               private aut: AngularFireAuth,
               private image: ImageProviderProduct,
               private geolocation: Geolocation,
-              private barcodeScanner: BarcodeScanner
+              private barcodeScanner: BarcodeScanner,
+              private googleBooks: ApiGoogleBooks
             ) {            
   }
 
@@ -51,11 +54,16 @@ export class AddPage {
 
   readBarcode(){
     this.barcodeScanner.scan().then(barcodeData => {
-      
-      alert(barcodeData.text);
+      //barcodeData.text -> Devuelve el codigo ISBN
+      this.googleBooks.getBooks(barcodeData.text).subscribe(
+        data => {
+          this.prod = data['items'];
+        }
+      )
      }).catch(err => {
          console.log('Error', err);
      });
+     
   }
 
   selectPhoto(){

@@ -15,8 +15,8 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor='let chat of chatRoomsUser ' detail-push navPush="ChatPage" [navParams]="{chatKey:chat.chatID,comprador:chat.comprador,vendedor:chat.vendedor}">
-      {{ getName(chat.comprador,chat.vendedor) }} - {{ getInfoLibro(chat.producto).titulo }}
+    <ion-item *ngFor='let chat of chatRooms | async' detail-push navPush="ChatPage" [navParams]="{chatKey:getDataOfChatRoom(chat.value).chatID,comprador:getDataOfChatRoom(chat.value).comprador,vendedor:getDataOfChatRoom(chat.value).vendedor}">
+      {{ getName(getDataOfChatRoom(chat.value).comprador,getDataOfChatRoom(chat.value).vendedor) }} - {{ getInfoLibro(getDataOfChatRoom(chat.value).producto).titulo }}
     </ion-item>
   </ion-list>
 </ion-content>

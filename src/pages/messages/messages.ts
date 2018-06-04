@@ -5,7 +5,7 @@ import { ChatListService } from './../../service/message-list';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Observable } from 'rxjs/Observable';
-import { ChatRoom } from '../../models/messages';
+import { ChatRoom, ChatUserRooms } from '../../models/messages';
 
 /**
  * Generated class for the MessagesPage page.
@@ -21,19 +21,26 @@ import { ChatRoom } from '../../models/messages';
 })
 export class MessagesPage {
 
-  chatRoomsUser: ChatRoom[];
+  chatRooms: Observable<ChatUserRooms[]>;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private RoomService: ChatListService,
               private db: AngularFireDatabase,
               private auth: AngularFireAuth) {
-                RoomService.getChatUserRoomsIds();
-                this.chatRoomsUser = this.RoomService.getDataOfChatRoom();
+                this.chatRooms = RoomService.getChatUserRoomsIds()
   }
 
-  ionViewDidLoad() {
-    console.log(this.chatRoomsUser)
+  ionViewDidLoad() {}
+
+  getDataOfChatRoom(key:string):ChatRoom{
+    var array = {} as ChatRoom;
+    
+    this.db.database.ref('chatRooms').child(key).on('value', snap => {
+        array = snap.val()
+    });
+
+    return array
   }
 
   getName(keyComprador:string,keyVendedor:string):string{
@@ -51,10 +58,12 @@ export class MessagesPage {
   }
 
   getInfoLibro(key:string):ProductWithImage{
-    var str
+    var str = {} as ProductWithImage;
+    
     this.db.database.ref('productos').child(key).on('value', snap => {
       str = snap.val()
     })
+
     return str
   }
 }

@@ -12,7 +12,31 @@
 
 </ion-header>
 
-
-<ion-content padding>
-
-</ion-content>
+<ion-content class="col">
+    <ion-row *ngFor="let prod of savedList | async">
+      <ion-col col-6 
+      detail-push navPush="InfoLibroPage" [navParams]="{prod:getData(prod.key),slideData:getImages(prod.key)}">
+      <div class="header-banner">
+        <ion-slides class="home-slide" pager="true">
+          <ion-slide *ngFor="let slide of getImages(prod.key)" >
+            <img  class="image" src="{{slide}}"/>
+          </ion-slide>
+        </ion-slides>
+      </div>
+      <div class="info-item">
+        <div id="title">{{getData(prod.key).titulo}}</div>
+        <div id="venta" *ngIf="prod.accion == 'Vendo'">
+          <span> Venta {{getData(prod.key).precio}}</span>
+          <ion-icon name="logo-euro" color="primary"></ion-icon>
+        </div >
+        <div id="cambio" *ngIf="prod.accion == 'Cambio'">
+            <span >Cambio</span>
+          </div >
+          <div id="gratis" *ngIf="prod.accion == 'Gratis'">
+              <span >Gratis</span>
+            </div >
+      </div>
+        
+      </ion-col>
+    </ion-row> 
+  </ion-content>

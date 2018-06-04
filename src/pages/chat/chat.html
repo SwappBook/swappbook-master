@@ -4,10 +4,16 @@
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
+
 <ion-header>
 
   <ion-navbar>
     <ion-title>chat</ion-title>
+    <ion-buttons end right *ngIf="this.vendedorKey != userID">
+        <button ion-button icon-only (click)="aceptarUser()">
+          <ion-icon name="checkbox-outline"></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
 
 </ion-header>
@@ -16,9 +22,9 @@
 <ion-content padding>
     <ion-list>
         <ion-item *ngFor="let chat of message | async" no-lines>
-          <div class="chat-status" text-center *ngIf="chat.type==='join'||chat.type==='exit';else message">
-            <span class="chat-date">{{chat.sendDate | date:'short'}}</span>
-            <span class="chat-content-center">{{chat.message}}</span>
+          <div class="chat-status" text-center *ngIf="chat.remitente === '';else message">
+            <!--<span class="chat-date">{{chat.sendDate | date:'short'}}</span>-->
+            <span class="chat-content-center">Sin mensajes.</span>
           </div>
           <ng-template #message>
             <div class="chat-message" text-right *ngIf="chat.remitente === userID">
@@ -41,14 +47,14 @@
 </ion-content>
 
 <ion-footer>
-    <ion-grid>
-      <ion-row>
-        <ion-col col-10>
-          <ion-input type="text" placeholder="Type a message" [(ngModel)]="data.message" name="message"></ion-input>
-        </ion-col>
-        <ion-col col-2 (click)="sendMessage()">
-          <ion-icon name="paper-plane"></ion-icon>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </ion-footer>
+  <ion-grid>
+    <ion-row>
+      <ion-col col-10>
+        <ion-input type="text" placeholder="Escribir mensaje..." [(ngModel)]="data.message" name="message"></ion-input>
+      </ion-col>
+      <ion-col col-2 (click)="sendMessage()">
+        <ion-icon name="paper-plane"></ion-icon>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

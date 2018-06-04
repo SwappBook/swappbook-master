@@ -21,6 +21,7 @@
 
 
 <ion-content >
+
   <span id="span">Añadir libro usando lector Qr</span>
             <button ion-button icon-only end right small color="danger" id="qrBtn" (click)="readBarcode()">
 
@@ -39,63 +40,102 @@
       <button ion-button small  id="camBtn" color="danger" (click)="selectPhoto()">
           <ion-icon name="camera" id="camIcon" color="withe" item-left></ion-icon>
       </button>
-    
+
+      <!-- TITULO -->
+      <div *ngIf="prod.length > 0 ;else notitulo">
+          <ion-item *ngFor="let p of prod" no-lines id="rounded">
+            <ion-input id="s" type="text" [(ngModel)]="product.titulo" [ngModelOptions]="{standalone: true}" placeholder="Titulo:" value="{{ p.volumeInfo.title }}" clearInput="true" required></ion-input>
+          </ion-item>
+      </div>
+      <ng-template #notitulo>
+        <ion-item  no-lines id="rounded">
+          <ion-input id="s" type="text" [(ngModel)]="product.titulo" [ngModelOptions]="{standalone: true}" placeholder="Titulo:" clearInput="true" required></ion-input>
+        </ion-item>
+      </ng-template>
+      <!---->
+
+     <!-- AUTORES -->
+     <div *ngIf="prod.length > 0 ;else noautor">
+        <ion-item *ngFor="let p of prod" no-lines id="rounded">
+          <ion-input type="text" *ngFor="let autor of p.volumeInfo.authors" [(ngModel)]="product.autor" [ngModelOptions]="{standalone: true}" placeholder="Autor:" value="{{ autor }}" required></ion-input>
+        </ion-item>
+     </div>
+     <ng-template #noautor>
+        <ion-item  no-lines id="rounded">
+          <ion-input type="text" [(ngModel)]="product.autor" [ngModelOptions]="{standalone: true}" placeholder="Autor:" required></ion-input>
+        </ion-item>
+     </ng-template>
+     <!---->
+     
+     <!-- ISBN -->
+     <div *ngIf="prod.length > 0 ;else noisbn">
+       <div *ngFor="let p of prod">
+         <div *ngFor="let isbn of p.volumeInfo.industryIdentifiers">
+            <ion-item *ngIf="isbn.type === 'ISBN_13'" no-lines id="rounded">
+                <ion-input type="text"  [(ngModel)]="product.isbn" [ngModelOptions]="{standalone: true}" placeholder="ISBN:" value="{{ isbn.identifier }}" required></ion-input>
+              </ion-item>
+         </div>
+       </div>
+     </div>
+     <ng-template #noisbn>
+        <ion-item  no-lines id="rounded">
+         <ion-input type="text" [(ngModel)]="product.isbn" [ngModelOptions]="{standalone: true}" placeholder="ISBN:"></ion-input>
+        </ion-item>
+     </ng-template>
+      <!---->
+      
       <ion-item  no-lines id="rounded">
-          <ion-input id="s" type="text" [(ngModel)]="product.titulo" [ngModelOptions]="{standalone: true}" placeholder="Titulo:" clearInput="true"></ion-input>
-     </ion-item>
-
-     <ion-item  no-lines id="rounded">
-        <ion-input type="text" [(ngModel)]="product.autor" [ngModelOptions]="{standalone: true}" placeholder="Autor:" required></ion-input>
-     </ion-item>
-
-     <ion-item  no-lines id="rounded">
-        <ion-input type="text" [(ngModel)]="product.isbn" [ngModelOptions]="{standalone: true}" placeholder="ISBN:"></ion-input>
-    </ion-item>
-
-    <ion-item  no-lines id="rounded">
         <ion-label>Genero:</ion-label>
         <ion-select [(ngModel)]="product.categoria" [ngModelOptions]="{standalone: true}"  placeholder="Opciones">
-            <ion-option>Thriller</ion-option>
-            <ion-option>Romántica</ion-option>
-            <ion-option>Aventura</ion-option>
-            <ion-option>Terror</ion-option>
-            <ion-option>Ciencia Ficción</ion-option>
-            <ion-option>Investigación</ion-option>
-            <ion-option>Biográfica</ion-option>
-            <ion-option>Infantil</ion-option>
-            <ion-option>Autoayuda</ion-option>
-            <ion-option>Erótica</ion-option>
-            <ion-option>Hogar</ion-option>
-            <ion-option>Enciclopedia</ion-option>
-            <ion-option>Política</ion-option>
-            <ion-option>Sociedad</ion-option>
-            <ion-option>Deportes</ion-option>
-            <ion-option>Viajes</ion-option>
-            <ion-option>Otros</ion-option>
-          </ion-select>
-    </ion-item>
+          <ion-option>Thriller</ion-option>
+          <ion-option>Romántica</ion-option>
+          <ion-option>Aventura</ion-option>
+          <ion-option>Terror</ion-option>
+          <ion-option>Ciencia Ficción</ion-option>
+          <ion-option>Investigación</ion-option>
+          <ion-option>Biográfica</ion-option>
+          <ion-option>Infantil</ion-option>
+          <ion-option>Autoayuda</ion-option>
+          <ion-option>Erótica</ion-option>
+          <ion-option>Hogar</ion-option>
+          <ion-option>Enciclopedia</ion-option>
+          <ion-option>Política</ion-option>
+          <ion-option>Sociedad</ion-option>
+          <ion-option>Deportes</ion-option>
+          <ion-option>Viajes</ion-option>
+          <ion-option>Otros</ion-option>
+        </ion-select>
+      </ion-item>
 
       <ion-list radio-group [(ngModel)]="product.accion">
-       <ion-item no-lines>
-              <ion-label>Vender</ion-label>
-              <ion-radio value="Vendo"></ion-radio>
-            </ion-item>
-            <ion-item no-lines>
-              <ion-label>Cambiar</ion-label>
-              <ion-radio value="Cambio"></ion-radio>
-            </ion-item>
-            <ion-item no-lines>
-                <ion-label>Regalo</ion-label>
-                <ion-radio value="Gratis"></ion-radio>
-              </ion-item>
-          </ion-list>
-          <ion-item  no-lines *ngIf="product.accion == 'Vendo'" id="rounded3">
-              <ion-input type="number" min="0" [(ngModel)]="product.precio" [ngModelOptions]="{standalone: true}" placeholder="Precio:"></ion-input>
-          </ion-item>
-          <ion-item no-lines id="rounded2">
-          <ion-textarea  no-lines maxlength=140 placeholder="Descripcion:" id="comment-textarea" [(ngModel)]="product.descripcion">
-          </ion-textarea>
+        <ion-item no-lines>
+          <ion-label>Vender</ion-label>
+          <ion-radio value="Vendo"></ion-radio>
         </ion-item>
+        <ion-item no-lines>
+          <ion-label>Cambiar</ion-label>
+          <ion-radio value="Cambio"></ion-radio>
+        </ion-item>
+        <ion-item no-lines>
+          <ion-label>Regalo</ion-label>
+          <ion-radio value="Gratis"></ion-radio>
+        </ion-item>
+        </ion-list>
+          <ion-item  no-lines *ngIf="product.accion == 'Vendo'" id="rounded3">
+          <ion-input type="number" min="0" [(ngModel)]="product.precio" [ngModelOptions]="{standalone: true}" placeholder="Precio:"></ion-input>
+        </ion-item>
+
+        <!-- DESCRIPCION -->
+        <div *ngIf="prod.length > 0 ;else nodesc">
+            <ion-item *ngFor="let p of prod" no-lines id="rounded2">
+                <ion-textarea  no-lines maxlength=500 placeholder="Descripcion:" id="comment-textarea" [(ngModel)]="product.descripcion" value="{{ p.volumeInfo.description}}"></ion-textarea>
+            </ion-item>
+        </div>
+        <ng-template #nodesc>
+            <ion-item no-lines id="rounded2">
+              <ion-textarea  no-lines maxlength=500 placeholder="Descripcion:" id="comment-textarea" [(ngModel)]="product.descripcion"></ion-textarea>
+            </ion-item>
+        </ng-template>
 
      <!-- <form>
         <ion-item>

@@ -1,3 +1,4 @@
+import { ChatPage } from './../chat/chat';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild, ElementRef } from '@angular/core';
@@ -23,6 +24,9 @@ import { GoogleMaps, GoogleMap,
   templateUrl: 'info-libro.html',
 })
 export class InfoLibroPage {
+
+  tabBarElement: any;
+
   @ViewChild('map') mapElement:ElementRef;
   map: GoogleMap;
   prod = {} as Product;
@@ -42,6 +46,7 @@ export class InfoLibroPage {
               private _geoLoc: Geolocation,
               private userdb: UserService
             ) {
+              this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   ngAfterViewInit(){
@@ -87,6 +92,7 @@ export class InfoLibroPage {
   }
 
   ionViewDidLoad() {
+    this.tabBarElement.style.display = 'none'
     this.prod = this.navParams.get('prod');
     this.slideData = this.navParams.get('slideData');
     this.userRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/chatRooms');
@@ -98,9 +104,13 @@ export class InfoLibroPage {
     }
   }
 
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
+  }
+
   runChat(){
     const newKey = this.prod.key+"&"+this.prod.user_id+"&"+this.auth.auth.currentUser.uid ;
-    this.chatRooms.set(newKey,{
+    this.chatRooms.update(newKey,{
       vendedor: this.prod.user_id,
       comprador: this.auth.auth.currentUser.uid,
       producto: this.prod.key,
@@ -108,6 +118,7 @@ export class InfoLibroPage {
     }).then(res => {
       this.userRef.set(newKey,newKey);
       this.privateUserRef.set(newKey,newKey);
+      this.navCtrl.parent.select(4);
     });
   }
 

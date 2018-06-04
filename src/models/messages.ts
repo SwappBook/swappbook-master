@@ -5,6 +5,11 @@ export interface ChatRoom{
     vendedor:string;
 }
 
+export interface ChatUserRooms{
+    key?: string,
+    value: string
+}
+
 export interface Message{
     key?:string;
     remitente:string;

@@ -19,6 +19,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 })
 export class EditProfilePage {
 
+  tabBarElement: any;
   editProfile = {} as EditProfile
 
   constructor(public navCtrl: NavController,
@@ -26,6 +27,7 @@ export class EditProfilePage {
               private auth: AngularFireAuth,
               private editService : EditProfileService,
               private geolocation: Geolocation) {
+                this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
 
   getLocate(){
@@ -46,11 +48,16 @@ export class EditProfilePage {
      //     });
         }
 
-  ionViewDidLoad() {}
+  ionViewDidLoad() {
+    this.tabBarElement.style.display = 'none'
+  }
+
+  ionViewWillLeave() {
+    this.tabBarElement.style.display = 'flex';
+  }
 
   saveData(){
     this.editService.updateProfile(this.editProfile).then(res => {
-      alert('correcto');
       this.navCtrl.pop();
     });
   }

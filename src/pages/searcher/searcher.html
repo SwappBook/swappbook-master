@@ -17,7 +17,8 @@
     <div id="search-container4">
         <form id="search-form8">
           <ion-searchbar (ionInput)="getItems($event)" placeholder="" name=""></ion-searchbar>
-          <div class="spacer" style="width:300px;height:11px;" id="search-spacer3"></div>
+          
+          <ion-searchbar (ionInput)="getItemsAutor($event)" placeholder="" name=""></ion-searchbar>
           <ion-item id="search-select3">
             <ion-label>
               Categoria
@@ -64,27 +65,6 @@
               </ion-option>
             </ion-select>
           </ion-item>
-          <div class="spacer" style="width:300px;height:13px;" id="search-spacer2"></div>
-          <ion-item id="search-select4">
-            <ion-label>
-              Idioma
-            </ion-label>
-            <ion-select name="Idioma">
-              <ion-option>
-                Español
-              </ion-option>
-              <ion-option>
-                Ingles
-              </ion-option>
-              <ion-option>
-                Aleman
-              </ion-option>
-              <ion-option>
-                Catalan
-              </ion-option>
-            </ion-select>
-          </ion-item>
-          <div class="spacer" style="width:300px;height:13px;" id="search-spacer4"></div>
           <ion-item name="intercambio" id="search-checkbox23">
             <ion-label>
               Intercambio
@@ -97,22 +77,8 @@
             </ion-label>
             <ion-checkbox></ion-checkbox>
           </ion-item>
-          <div class="spacer" style="width:300px;height:10px;" id="search-spacer5"></div>
-          <ion-item id="search-input14">
-            <ion-label>
-              Zip Code
-            </ion-label>
-            <ion-input type="text" placeholder="Location"></ion-input>
-          </ion-item>
-          <div class="spacer" style="width:300px;height:12px;" id="search-spacer6"></div>
-          <ion-item id="search-range1">
-            <ion-range min="0" max="100" step="1" color="assertive" value="50" name="distancia">
-              <ion-label range-left>
-                Distancia
-              </ion-label>
-            </ion-range>
-          </ion-item>
-          <button id="search-button5" ion-button color="assertive" block>
+          
+          <button (click)="buscar()" id="search-button5" ion-button color="assertive" block>
             Buscar
           </button>
         </form>
