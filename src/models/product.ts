@@ -25,5 +25,10 @@ export interface ProductWithImage {
     accion: string;
 }
 
+export interface orderByDistance {
+    distance:number,
+    prod :Product
+}
+
 // crear interfaz que contenga los campos a editar
 // poner key pero no asignarle valor

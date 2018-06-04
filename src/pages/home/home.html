@@ -2,7 +2,7 @@
  
 </ion-header>
 
-<ion-content padding no-lines>
+<ion-content  no-lines>
 
     <ion-item no-lines>
       <img class="logo" src="assets/imgs/logo.png"> 
@@ -27,7 +27,8 @@
       <img src="assets/imgs/google.png">
     </ion-avatar>
    </button>
- 
+
+   <button class="resetBtn" ion-button small  clear (click)="resetBtn()">¿Has olvidado la contraseña? </button>
     
   </ion-content>
   
@@ -35,5 +36,5 @@
  <ion-item no-lines id="itemNewUser">
       <span no-lines id="newUser">New User? Sign Up</span>
     </ion-item>
-      <button  color="ourColor" style="width: 100%" ion-button (click)="register()">REGISTER</button>
+      <button  color="ourColor" style="width: 99%" ion-button (click)="register()">Sign Up</button>
   </ion-footer>

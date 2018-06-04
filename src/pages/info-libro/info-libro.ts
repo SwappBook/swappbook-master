@@ -2,7 +2,7 @@ import { ChatPage } from './../chat/chat';
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { Product } from '../../models/product';
 import { GoogleMaps, GoogleMap,
          LatLng, GoogleMapsEvent, CameraPosition,
@@ -44,7 +44,8 @@ export class InfoLibroPage {
               private db: AngularFireDatabase,
               private _googleMaps: GoogleMaps,
               private _geoLoc: Geolocation,
-              private userdb: UserService
+              private userdb: UserService,
+              private app:App,
             ) {
               this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
@@ -61,7 +62,7 @@ export class InfoLibroPage {
 
   // Aqui debo pasarle las cordenadas del libro !!!
     //  this.getLocation().then( res => {
-        loc = new LatLng(this.userData.latitude, this.userData.longitude);
+        loc = new LatLng(this.prod.latitude, this.prod.longitude);
         this.moveCamera(loc); 
 
         this.createMarker(loc).then((marker: Marker) => {
@@ -129,6 +130,14 @@ export class InfoLibroPage {
   getLocation(){
     return this._geoLoc.getCurrentPosition();
   }
+  
+  viewProfile(){
+    this.app.getRootNav().setRoot('PerfilPublicoPage'); 
+  }
+
+  //getLocation(){
+ //   return this._geoLoc.getCurrentPosition();
+ // }
 
   // MARKER
   // title es opcional !!

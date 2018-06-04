@@ -7,6 +7,138 @@ page-info-libro {
       #map {
         width: 100%;
         height: 100%;
+        position: relative;
+        bottom:0;
       }
 
+    .content{
+      background-color: white;
+      padding: 2%;
+    }
+
+    
+    .header-banner{
+      height: 45vw;
+      background-color: white;
+      border-radius: 10px;
+      margin-top: 2%;
+      margin-left: 2%;
+      margin-right: 2%;
+      border: 1px solid lightcoral;
+      
+
+      .img{
+        height: 45vw;;
+      }
+    }
+
+    .button-group{
+      top: 0;
+      margin: 0 !important;
+  
+     .col {
+          &:first-child:not(:last-child) {
+            padding-right: 0;
+            .button {
+                font-size: 3vw;
+              border-top-right-radius: 0;
+              border-bottom-right-radius: 0;
+            }
+          }
+          &:not(:first-child):not(:last-child) {
+            padding-right: 2px;
+            padding-left: 2px;
+            .button {
+              font-size: 3vw;
+              border-radius: 0;
+            }
+          }
+          &:last-child:not(:first-child) {
+            padding-left: 0;
+            .button {
+              font-size: 3vw;
+              border-top-left-radius: 0;
+              border-bottom-left-radius: 0;
+            }
+          }
+        }
+
+  }
+  .body{
+    margin-left: 2%;
+    height: 70vw;
+   // background-color: blue;
+  }
+
+  .title{
+    font-size: 12pt;
+    width: 100%;
+    font-weight: bold;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+
+  #venta{
+    display: inline-block;
+    width: 100%;
+    span{
+        font-weight: bold;
+        font-size: 12pt;
+        color: #d32f2f;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+}
+#cambio{
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    font-size: 12pt;
+    span{
+        color: #14C1AD;
+       // font-size: 15pt;
+        font-weight: bold;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    }
+    
+}
+
+#gratis{
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    span{
+       color: rgb(20, 101, 193);
+       // font-size: 15pt;
+        font-weight: bold;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+    }
+}
+
+hr{
+  margin-right: 2%;
+}
+
+.contDesc{
+  width: 98%;
+  height: 25%;
+  border-radius: 5px;
+  background-color: #f8f8f8;
+  position: relative;
+  bottom: 0;
+  padding: 1%;
+}
+ #eye{
+   bottom: 0;
+ }
+  .col1{
+    padding-left: 5%;
+
+  }
+  .col2{
+    padding-left: 5%;
+  }
+  
 }

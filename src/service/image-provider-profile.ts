@@ -8,6 +8,7 @@ import { AngularFireAuth } from "angularfire2/auth";
 export class ImageProvider {
 
     public cameraImage:String
+    public publicImage:String
 
     constructor(private _CAMERA: Camera,
     private storage: AngularFireStorage,
@@ -67,6 +68,25 @@ export class ImageProvider {
         return new Promise(resolve => {
             try {
                 const pic = this.storage.ref('profiles').child(this.auth.auth.currentUser.uid).getDownloadURL();
+                if (pic != null){
+                    pic.forEach(element => {
+                        this.cameraImage = element;
+                        resolve(this.cameraImage)
+                    });
+                }
+            } catch(e){
+                this.cameraImage = "https://aiaa.nmsu.edu/files/2016/09/noprofile.gif";
+                resolve(this.cameraImage);
+            }
+        })
+    }
+
+
+
+    getPublicImage(id:string):Promise<any>{
+        return new Promise(resolve => {
+            try {
+                const pic = this.storage.ref('profiles').child(id).getDownloadURL();
                 if (pic != null){
                     pic.forEach(element => {
                         this.cameraImage = element;

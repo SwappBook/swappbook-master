@@ -12,4 +12,11 @@ export class UserService {
         const userRef = this.db.database.ref('users').child(this.auth.auth.currentUser.uid);
         return userRef;
     }
+
+    getUserDataId(id: string) {
+        const userRef = this.db.database.ref('users').child(id);
+        return userRef;
+    }
+
+
 }
