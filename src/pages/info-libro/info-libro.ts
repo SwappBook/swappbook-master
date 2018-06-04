@@ -1,7 +1,7 @@
 import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Component, ViewChild, ElementRef } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
 import { Product } from '../../models/product';
 import { GoogleMaps, GoogleMap,
          LatLng, GoogleMapsEvent, CameraPosition,
@@ -30,6 +30,7 @@ export class InfoLibroPage {
   slideData = [];
   userData = {} as UserLoged;
   userRef: AngularFireList<any>;
+  userDbRef: AngularFireList<any>;
   privateUserRef: AngularFireList<any>;
   chatRooms: AngularFireList<any>;
 
@@ -39,7 +40,8 @@ export class InfoLibroPage {
               private db: AngularFireDatabase,
               private _googleMaps: GoogleMaps,
               private _geoLoc: Geolocation,
-              private userdb: UserService
+              private userdb: UserService,
+              private app:App,
             ) {
   }
 
@@ -55,7 +57,7 @@ export class InfoLibroPage {
 
   // Aqui debo pasarle las cordenadas del libro !!!
     //  this.getLocation().then( res => {
-        loc = new LatLng(this.userData.latitude, this.userData.longitude);
+        loc = new LatLng(this.prod.latitude, this.prod.longitude);
         this.moveCamera(loc); 
 
         this.createMarker(loc).then((marker: Marker) => {
@@ -88,12 +90,13 @@ export class InfoLibroPage {
   ionViewDidLoad() {
     this.prod = this.navParams.get('prod');
     this.slideData = this.navParams.get('slideData');
+    this.userRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/chatRooms');
+    this.userDbRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/saved');
+    this.privateUserRef = this.db.list('users/'+this.prod.user_id+'/chatRooms');
+    this.chatRooms = this.db.list('chatRooms');
     if (this.prod.user_id == this.auth.auth.currentUser.uid){
       this.hide = false;
     }
-    this.userRef = this.db.list('users/'+this.auth.auth.currentUser.uid+'/chatRooms');
-    this.privateUserRef = this.db.list('users/'+this.prod.user_id+'/chatRooms');
-    this.chatRooms = this.db.list('chatRooms');
   }
 
   runChat(){
@@ -109,9 +112,17 @@ export class InfoLibroPage {
     });
   }
 
-  getLocation(){
-    return this._geoLoc.getCurrentPosition();
+  saveBook(){
+    this.userDbRef.set(this.prod.key,this.prod.key);
   }
+  
+  viewProfile(){
+    this.app.getRootNav().setRoot('PerfilPublicoPage'); 
+  }
+
+  //getLocation(){
+ //   return this._geoLoc.getCurrentPosition();
+ // }
 
   // MARKER
   // title es opcional !!

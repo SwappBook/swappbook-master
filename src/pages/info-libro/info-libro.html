@@ -6,28 +6,93 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>InfoLibro</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="content">
     <div class="header-banner">
         <ion-slides class="home-slide" pager="true">
           <ion-slide *ngFor="let slide of slideData">
-            <img src="{{slide}}"/>
+            <img class="img" src="{{slide}}"/>
           </ion-slide>
         </ion-slides>
       </div>
-  <ion-item>
-    <ion-label>{{prod?.titulo}}</ion-label>
-  </ion-item>
+      <div class="body">
   <div *ngIf="hide">
-    <button (click)="runChat()">Chat</button>
-  </div>
+      <ion-grid class="button-group">
+           <ion-row >
+            <ion-col ><button ion-button color="ourColor" style="width:100%" (click)="runChat()">Chat
+            </button></ion-col>
+            <ion-col ><button ion-button color="ourColor" (click)="saveBook()" style="width:100%">Guardar</button></ion-col>
+            <ion-col ><button ion-button color="ourColor" style="width:100%" detail-push navPush='PerfilPublicoPage' [navParams]="{prod:prod}">Ver Perfil</button></ion-col>
+          </ion-row>
+       </ion-grid>
+     </div>
+     <div *ngIf="!hide">
+     <ion-grid class="button-group">
+         <ion-row >
+          <ion-col ><button ion-button color="ourColor" style="width:100%" (click)="runChat()" disabled>Chat
+          </button></ion-col>
+          <ion-col ><button ion-button color="ourColor" (click)="saveBook()" style="width:100%" disabled>Guardar</button></ion-col>
+          <ion-col ><button ion-button color="ourColor" style="width:100%" disabled>Ver Perfil</button></ion-col>
+        </ion-row>
+     </ion-grid>
+    
+     </div>
+     <div>
+        <span class="textoFijo">Titulo:</span>
+     <span class="title">{{prod?.titulo}}</span>
+    </div>
+    <div>
+     <div class="info-item">
+          <div id="venta" *ngIf="prod.accion == 'Vendo'">
+            <span > Venta: {{prod.precio}}</span>
+            <ion-icon name="logo-euro" color="primary"></ion-icon>
+          </div >
+          <div id="cambio" *ngIf="prod.accion == 'Cambio'">
+              <span >Cambio</span>
+            </div >
+            <div id="gratis" *ngIf="prod.accion == 'Gratis'">
+                <span >Gratis!!</span>
+              </div >
+        </div>
+        <hr>
+      </div>
+      <div>
+        <span class="textoFijo">Categoria:</span>
+          <span class="title">{{prod?.categoria}}</span>
+      </div>
+      <hr>
+      <div>
+          <span class="textoFijo">Autor:</span>
+          <span class="title">{{prod?.autor}}</span>
+        </div>
+        <hr>
+        <span class="textoFijo">Descripcion:</span>
+            <div class="contDesc">
+          <span  class="textoFijo">{{prod?.descripcion}}</span>
+           </div>
+   </div>
   
+     <ion-grid no-lines>
+       <ion-row>
+          <ion-col col-4></ion-col>
+         <ion-col col-4></ion-col>
+         <ion-col col-2 class="col2">
+           <ion-icon name="eye" id="eye" color="withe" style="margin-left: 5%;"></ion-icon>
+          <span class="textoFijo">0</span>
+        </ion-col>
+         <ion-col col-2 class="col2">
+            <ion-icon name="bookmarks" id="mark" color="withe"></ion-icon>
+            <span class="textoFijo">0</span>
+         </ion-col>
+       </ion-row>
+
+     </ion-grid>
   <div #map id="map" style="height: 20%"></div>
- 
+  
 </ion-content>

@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Register</ion-title>
+  <ion-navbar color="primary">
+    <ion-title >Nueva cuenta</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,26 +15,23 @@
 
 <ion-content padding>
 
-    <ion-item>
-        <ion-label floating>Full name:</ion-label>
-        <ion-input type="text" [(ngModel)]="user.full_name"></ion-input>  
+    <ion-item no-lines id="rounded2">
+        <ion-input type="text" placeholder="Nombre:" [(ngModel)]="user.full_name"></ion-input>  
       </ion-item>
 
-    <ion-item>
-      <ion-label floating>Email:</ion-label>
-      <ion-input type="text" [(ngModel)]="user.email"></ion-input>  
+    <ion-item no-lines id="rounded">
+      <ion-input type="text" placeholder="Email:" [(ngModel)]="user.email"></ion-input>  
     </ion-item>
       
-    <ion-item>
-      <ion-label floating>Password:</ion-label>
-      <ion-input type="password" [(ngModel)]="user.password"></ion-input>
+    <ion-item no-lines id="rounded">
+      <ion-input type="password" placeholder="Password:" [(ngModel)]="user.password"></ion-input>
     </ion-item>
 
-    <ion-item>
-        <ion-label floating>Confirmar password:</ion-label>
-        <ion-input type="text" [(ngModel)]="user.confirm_password"></ion-input>  
+    <ion-item no-lines id="rounded">
+        <ion-input type="text" placeholder="Confirmar password:" [(ngModel)]="user.confirm_password"></ion-input>  
       </ion-item>
 
-    <button ion-button (click)="register(user)">REGISTER</button>
+    <button ion-button (click)="register(user)" style="margin: auto;
+    display: block;margin-top:5%;width:70%;">REGISTER</button>
 
 </ion-content>
