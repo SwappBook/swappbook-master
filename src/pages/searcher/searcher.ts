@@ -24,6 +24,9 @@ export class SearcherPage {
   prodList: Observable<ProductWithImage[]>;
   generalList:Array<ProductWithImage> = [];
   FilterList:Array<ProductWithImage> = [];
+  
+  cat = '';
+  checkItems = '';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -38,6 +41,7 @@ export class SearcherPage {
   }
 
   ionViewWillLeave() {
+    this.initializeItems();
     this.tabBarElement.style.display = 'flex';
   }
 
@@ -111,9 +115,42 @@ export class SearcherPage {
     });
   }
 
+  optionsFn(){
+    var q = this.cat;
+
+    this.FilterList = this.FilterList.filter((v) => {
+      if(v.categoria && q) {
+        if (v.categoria.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  }
+
+  check(){
+    if (this.FilterList.length < 0){
+      this.initializeItems();
+      console.log('vacio')
+    }
+
+    this.FilterList = this.FilterList.filter((v) => {
+      if(v.accion && this.checkItems) {
+        if (v.accion.toLowerCase().indexOf(this.checkItems.toLowerCase()) > -1) {
+          return true;
+        }
+        return false;
+      }
+    });
+  }
+
   buscar(){
     this.FilterList.forEach(element => {
       console.log(element.descripcion)
     });  
+  }
+
+  clear(){
+    this.igualarArrays();
   }
 }

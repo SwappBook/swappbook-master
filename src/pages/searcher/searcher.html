@@ -23,64 +23,49 @@
             <ion-label>
               Categoria
             </ion-label>
-            <ion-select name="categoria">
-              <ion-option>
-                Thriller
-              </ion-option>
-              <ion-option>
-                Romantica
-              </ion-option>
-              <ion-option>
-                Aventura
-              </ion-option>
-              <ion-option>
-                Terror
-              </ion-option>
-              <ion-option>
-                Ficción
-              </ion-option>
-              <ion-option>
-                Investigación
-              </ion-option>
-              <ion-option>
-                Biografica
-              </ion-option>
-              <ion-option>
-                Infantil
-              </ion-option>
-              <ion-option>
-                Autoayuda
-              </ion-option>
-              <ion-option>
-                Erotica
-              </ion-option>
-              <ion-option>
-                Hogar
-              </ion-option>
-              <ion-option>
-                Enciclopedia
-              </ion-option>
-              <ion-option>
-                Politica
-              </ion-option>
+            <ion-select name="categoria" [(ngModel)]="cat" [ngModelOptions]="{standalone: true}" (ionChange)="optionsFn()">
+                <ion-option>Thriller</ion-option>
+                <ion-option>Romántica</ion-option>
+                <ion-option>Aventura</ion-option>
+                <ion-option>Terror</ion-option>
+                <ion-option>Ciencia Ficción</ion-option>
+                <ion-option>Investigación</ion-option>
+                <ion-option>Biográfica</ion-option>
+                <ion-option>Infantil</ion-option>
+                <ion-option>Autoayuda</ion-option>
+                <ion-option>Erótica</ion-option>
+                <ion-option>Hogar</ion-option>
+                <ion-option>Enciclopedia</ion-option>
+                <ion-option>Política</ion-option>
+                <ion-option>Sociedad</ion-option>
+                <ion-option>Deportes</ion-option>
+                <ion-option>Viajes</ion-option>
+                <ion-option>Otros</ion-option>
             </ion-select>
           </ion-item>
-          <ion-item name="intercambio" id="search-checkbox23">
-            <ion-label>
-              Intercambio
-            </ion-label>
-            <ion-checkbox></ion-checkbox>
-          </ion-item>
-          <ion-item name="ventas" id="search-checkbox22">
-            <ion-label>
-              Ventas
-            </ion-label>
-            <ion-checkbox></ion-checkbox>
-          </ion-item>
+          
+          <ion-list radio-group [(ngModel)]="checkItems" [ngModelOptions]="{standalone: true}" (ionChange)="check()">
+              <ion-item no-lines>
+                <ion-label>Vender</ion-label>
+                <ion-radio value="Vendo"></ion-radio>
+              </ion-item>
+              <ion-item no-lines>
+                <ion-label>Cambiar</ion-label>
+                <ion-radio value="Cambio"></ion-radio>
+              </ion-item>
+              <ion-item no-lines>
+                <ion-label>Regalo</ion-label>
+                <ion-radio value="Gratis"></ion-radio>
+              </ion-item>
+              </ion-list>
           
           <button (click)="buscar()" id="search-button5" ion-button color="assertive" block>
             Buscar
           </button>
+
+          <button (click)="clear()" id="search-button5" ion-button color="assertive" block>
+              Limpiar
+            </button>
         </form>
       </div>
 </ion-content>

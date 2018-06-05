@@ -9,7 +9,7 @@
 
   <ion-navbar>
     <ion-title>chat</ion-title>
-    <ion-buttons end right *ngIf="this.vendedorKey != userID">
+    <ion-buttons end right *ngIf="this.vendedorKey == userID">
         <button ion-button icon-only (click)="aceptarUser()">
           <ion-icon name="checkbox-outline"></ion-icon>
         </button>
