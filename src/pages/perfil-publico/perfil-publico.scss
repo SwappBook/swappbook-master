@@ -1,27 +1,32 @@
 page-perfil-publico {
 
+  .content{
+    //background-color: #f3efee;
+  }
+
         .button-group{
             margin: 0 !important;
+            background-color: #f3efee;
         
            .col {
                 &:first-child:not(:last-child) {
-                  padding-right: 0;
+                  padding-right: 1px;
                   .button {
                       font-size: 3vw;
                     border-top-right-radius: 0;
                     border-bottom-right-radius: 0;
                   }
                 }
-                &:not(:first-child):not(:last-child) {
-                  padding-right: 2px;
-                  padding-left: 2px;
-                  .button {
-                    font-size: 3vw;
-                    border-radius: 0;
-                  }
-                }
+              //  &:not(:first-child):not(:last-child) {
+            //      padding-right: 2px;
+           //       padding-left: 2px;
+          //        .button {
+          //          font-size: 3vw;
+          //          border-radius: 0;
+//}/
+         //       }
                 &:last-child:not(:first-child) {
-                  padding-left: 0;
+                  padding-left: 1px;
                   .button {
                     font-size: 3vw;
                     border-top-left-radius: 0;
@@ -32,22 +37,6 @@ page-perfil-publico {
         }
         
     
-        #cameraIcon{
-            color: red;
-            font-size: 11vw;
-           
-        }
-    
-        #cameraBtn{
-           margin-top: -23vw;
-           margin-left: 9vw;
-           border-radius: 50%;
-           width: 15vw;
-           height: 15vw;
-           position: absolute;
-           -webkit-box-shadow: none !important;
-           background: transparent;
-        }
     
     
         .hide-card {
@@ -61,12 +50,84 @@ page-perfil-publico {
             margin-top: 4%;
             height: 45vw;
             width: 45vw;
-            border: 1px solid #fff;
+            border: 2px solid red;
             border-radius: 50%;
             display: inline-block;
             margin-left: auto;
             margin-right: auto;
             position: relative;
           }
+
+          .header-banner{
+            background-color: white;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            box-shadow: 1px 1px 5px #bebebe;
+           // width: 80%;
+           // margin-left:10%;     
+         }
+     
+         .image{
+             height: 40vw;
+             //width: 25vw;
+             margin: auto;
+             vertical-align: middle
+         }
+     
+         .info-item{
+             margin-top: 2px;
+             border-bottom-left-radius: 10px;
+             border-bottom-right-radius: 10px;
+             background-color: white;  
+             height: 13vw;
+             box-shadow: 1px 1px 5px #bebebe;
+         }
+         .row2{
+             background-color: #f3efee;
+           
+         }
+     
+         #title{
+             width: 100%;
+             text-align: center;
+         }
+     
+         #venta{
+             display: inline-block;
+             width: 100%;
+             text-align: center;
+             span{
+                 font-weight: bold;
+                 color: #d32f2f;
+                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+             }
+         }
+         #cambio{
+             text-align: center;
+             display: inline-block;
+             width: 100%;
+             span{
+             
+                 color: #14C1AD;
+                // font-size: 15pt;
+                 font-weight: bold;
+                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     
+             }
+             
+         }
+     
+         #gratis{
+             text-align: center;
+             display: inline-block;
+             width: 100%;
+             span{
+                color: rgb(20, 101, 193);
+                // font-size: 15pt;
+                 font-weight: bold;
+                 font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     
+             }
+         }
     
 }

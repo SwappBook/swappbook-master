@@ -18,5 +18,10 @@ export class UserService {
         return userRef;
     }
 
+    getUserNameId(id: string) {
+        const userRef = this.db.database.ref('users/name').child(id);
+        return userRef;
+    }
+
 
 }

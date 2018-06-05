@@ -5,7 +5,8 @@ import { Message } from './../../models/messages';
 import { Observable } from 'rxjs/Observable';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
+import { UserService } from './../../service/user-service';
+import { User} from '../../models/user';
 /**
  * Generated class for the ChatPage page.
  *
@@ -28,11 +29,14 @@ export class ChatPage {
   userID:string;
   message:Observable<Message[]>;
   data = {} as Message;
+  pruductoKey:string;
+
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private db: AngularFireDatabase,
               private runChat: ChatListService,
+              private userdb: UserService,
               public auth:AngularFireAuth) {
                 this.tabBarElement = document.querySelector('.tabbar.show-tabbar');
   }
@@ -44,6 +48,8 @@ export class ChatPage {
     this.vendedorKey = this.navParams.get('vendedor');
     this.userID = this.auth.auth.currentUser.uid;
     this.message =  this.runChat.getMessageOfChatRoom(this.chatKey);
+    this.pruductoKey = this.navParams.get('producto');
+
   }
 
   ionViewWillLeave() {
@@ -51,8 +57,10 @@ export class ChatPage {
   }
 
   aceptarUser(){
+
     this.db.database.ref('chatRooms/'+this.chatKey).update({'estado':true})
     .then(res => {
+      this.db.database.ref('productos/'+this.pruductoKey).update({'estado':true})
       this.navCtrl.pop();
     });
   }
@@ -69,4 +77,5 @@ export class ChatPage {
     newData.set(this.data);
     this.data.message = '';
   }
+
 }

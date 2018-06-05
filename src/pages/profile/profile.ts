@@ -7,6 +7,7 @@ import { HomePage } from '../home/home';
 import { EditProfileService } from '../../service/edit-profile-service';
 import { Observable } from 'rxjs/Observable';
 import { ProductWithImage } from '../../models/product';
+import { AngularFireDatabase } from 'angularfire2/database';
 
 /**
  * Generated class for the ProfilePage page.
@@ -26,13 +27,15 @@ export class ProfilePage {
   userLista: ProductWithImage[] = [];
   profilePhoto: String;
   userData = {};
+  prod = {} as ProductWithImage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
   private app:App,
   private afAuth: AngularFireAuth,
   private image: ImageProvider,
   private userdb: UserService,
-  private profile: EditProfileService) {}
+  private profile: EditProfileService,
+  private db: AngularFireDatabase) {}
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
@@ -67,6 +70,20 @@ export class ProfilePage {
     return this.afAuth.auth.signOut().then( () => {
       this.app.getRootNav().setRoot(HomePage)
     })
+  }
+
+  
+  getImages(key:string): any[]{
+    var items = []
+
+    this.db.database.ref('productos/'+key+'/images_products').on('value', res => {
+      res.forEach(itemSnap => {
+        items.push(itemSnap.val())
+        return false
+      })
+    })
+    
+    return items
   }
 
 }

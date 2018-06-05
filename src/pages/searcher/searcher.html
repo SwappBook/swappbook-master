@@ -6,79 +6,59 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>searcher</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Buscador</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+
+   
     <div id="search-container4">
+        <img class="img" src="assets/imgs/mess.png">
         <form id="search-form8">
-          <ion-searchbar (ionInput)="getItems($event)" placeholder="" name=""></ion-searchbar>
+          <ion-searchbar class="search"  (ionInput)="getItems($event)" placeholder="" name=""></ion-searchbar>
           
-          <ion-searchbar (ionInput)="getItemsAutor($event)" placeholder="" name=""></ion-searchbar>
-          <ion-item id="search-select3">
-            <ion-label>
-              Categoria
-            </ion-label>
-            <ion-select name="categoria">
-              <ion-option>
-                Thriller
-              </ion-option>
-              <ion-option>
-                Romantica
-              </ion-option>
-              <ion-option>
-                Aventura
-              </ion-option>
-              <ion-option>
-                Terror
-              </ion-option>
-              <ion-option>
-                Ficción
-              </ion-option>
-              <ion-option>
-                Investigación
-              </ion-option>
-              <ion-option>
-                Biografica
-              </ion-option>
-              <ion-option>
-                Infantil
-              </ion-option>
-              <ion-option>
-                Autoayuda
-              </ion-option>
-              <ion-option>
-                Erotica
-              </ion-option>
-              <ion-option>
-                Hogar
-              </ion-option>
-              <ion-option>
-                Enciclopedia
-              </ion-option>
-              <ion-option>
-                Politica
-              </ion-option>
-            </ion-select>
+          <ion-searchbar class="search"  (ionInput)="getItemsAutor($event)" placeholder="Autor" name=""></ion-searchbar>
+ <ion-item  no-lines id="rounded">
+        <ion-label>Genero:</ion-label>
+        <ion-select placeholder="Opciones">
+          <ion-option>Thriller</ion-option>
+          <ion-option>Romántica</ion-option>
+          <ion-option>Aventura</ion-option>
+          <ion-option>Terror</ion-option>
+          <ion-option>Ciencia Ficción</ion-option>
+          <ion-option>Investigación</ion-option>
+          <ion-option>Biográfica</ion-option>
+          <ion-option>Infantil</ion-option>
+          <ion-option>Autoayuda</ion-option>
+          <ion-option>Erótica</ion-option>
+          <ion-option>Hogar</ion-option>
+          <ion-option>Enciclopedia</ion-option>
+          <ion-option>Política</ion-option>
+          <ion-option>Sociedad</ion-option>
+          <ion-option>Deportes</ion-option>
+          <ion-option>Viajes</ion-option>
+          <ion-option>Otros</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-list radio-group >
+          <ion-item no-lines name="ventas" id="search-checkbox22">
+            <ion-label>Vender</ion-label>
+            <ion-radio value="Vendo"></ion-radio>
           </ion-item>
-          <ion-item name="intercambio" id="search-checkbox23">
-            <ion-label>
-              Intercambio
-            </ion-label>
-            <ion-checkbox></ion-checkbox>
+          <ion-item no-lines name="intercambio" id="search-checkbox23">
+            <ion-label>Cambiar</ion-label>
+            <ion-radio value="Cambio"></ion-radio>
           </ion-item>
-          <ion-item name="ventas" id="search-checkbox22">
-            <ion-label>
-              Ventas
-            </ion-label>
-            <ion-checkbox></ion-checkbox>
+          <ion-item no-lines name="Gratis" id="search-checkbox21">
+            <ion-label>Regalo</ion-label>
+            <ion-radio value="Gratis"></ion-radio>
           </ion-item>
-          
-          <button (click)="buscar()" id="search-button5" ion-button color="assertive" block>
+          </ion-list>
+          <button detail-push navPush="ResultPage"  (click)="buscar()" id="search-button5" ion-button color="assertive" block>
             Buscar
           </button>
         </form>

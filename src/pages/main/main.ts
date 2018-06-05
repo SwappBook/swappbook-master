@@ -92,8 +92,6 @@ calculateDistance(lat1:number,lat2:number,long1:number,long2:number):number{
   return dis;
 }
 
-
-
   getLocate(){
     this.geolocation.getCurrentPosition().then((resp) => {
       this.locat = new LatLng(resp.coords.latitude,resp.coords.longitude);

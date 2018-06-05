@@ -29,6 +29,7 @@ export class PerfilPublicoPage {
   profilePhoto: String;
   userData = {};
   prod = {} as ProductWithImage;
+  hide: boolean = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     private app:App,
@@ -74,6 +75,12 @@ export class PerfilPublicoPage {
   }
 
   getLibrosUser(){
+    this.hide = true;
+    
+    if(this.userLista.length > 0){
+      this.userLista = []
+    }
+
     this.prodList.forEach(element => {
       element.forEach(res => {
         if (res.user_id == this.prod.user_id){
@@ -94,6 +101,10 @@ export class PerfilPublicoPage {
     })
     
     return items
+  }
+
+  hideItem(){
+    this.hide = false;
   }
 
 }

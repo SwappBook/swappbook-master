@@ -10,6 +10,7 @@ export interface Product {
     longitude: number;
     precio: number;
     accion: string;
+    estado: boolean;
 }
 
 export interface ProductWithImage {
