@@ -41,7 +41,11 @@ export class ProfilePage {
   }
   ionViewDidLoad() {
     this.prodList = this.navParams.get('prodList');
-    this.profilePhoto = this.image.cameraImage;
+    if (this.image.cameraImage == null){
+      this.profilePhoto = 'https://aiaa.nmsu.edu/files/2016/09/noprofile.gif';
+    } else {
+      this.profilePhoto = this.image.cameraImage
+    }
     this.userdb.getUserData().on('value', snap => {
       this.userData = snap.val();
     })

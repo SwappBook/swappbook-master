@@ -16,7 +16,7 @@ export class HomePage {
   user = {} as User;
   
   constructor(private app:App,private auth: AngularFireAuth,public navCtrl: NavController, public navParams: NavParams,
-    public alertCtrl: AlertController, private googlePlus: GooglePlus,private platform: Platform) {
+    public alertCtrl: AlertController, private googlePlus: GooglePlus,private platform: Platform,public afAuth: AngularFireAuth) {
   }
 
   ionViewDidLoad(){
@@ -37,7 +37,10 @@ export class HomePage {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(r => {
         return firebase.auth().signInWithEmailAndPassword(user.email,user.password).then(res =>{
           this.app.getRootNav().setRoot('HometabPage'); 
-        });
+        }).catch(e=> {
+          console.log(e)
+          this.presentAlert(e.message)
+        });;
       }).catch(e=> {
         console.log(e)
         this.presentAlert(e.message)
@@ -89,10 +92,46 @@ export class HomePage {
 
   presentAlert(str: string) {
     let alert = this.alertCtrl.create({
-      title: 'Error Login',
+      title: 'Error en login',
       subTitle: str,
       cssClass: 'secondary',
-      buttons: ['Dismiss']
+      buttons: ['Cerrar']
+    });
+    alert.present();
+  }
+
+  resetPassword(email: string): Promise<void> {
+    return this.afAuth.auth.sendPasswordResetEmail(email);
+  }
+
+  resetBtn(){
+    this.presentPrompt();
+  }
+
+  presentPrompt() {
+    let alert = this.alertCtrl.create({
+      title: 'Reset password',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email:'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Reset',
+          handler: data => {
+            this.resetPassword(data.email);
+          }
+        }
+      ]
     });
     alert.present();
   }

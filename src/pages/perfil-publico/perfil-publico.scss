@@ -1,0 +1,72 @@
+page-perfil-publico {
+
+        .button-group{
+            margin: 0 !important;
+        
+           .col {
+                &:first-child:not(:last-child) {
+                  padding-right: 0;
+                  .button {
+                      font-size: 3vw;
+                    border-top-right-radius: 0;
+                    border-bottom-right-radius: 0;
+                  }
+                }
+                &:not(:first-child):not(:last-child) {
+                  padding-right: 2px;
+                  padding-left: 2px;
+                  .button {
+                    font-size: 3vw;
+                    border-radius: 0;
+                  }
+                }
+                &:last-child:not(:first-child) {
+                  padding-left: 0;
+                  .button {
+                    font-size: 3vw;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                  }
+                }
+              }
+        }
+        
+    
+        #cameraIcon{
+            color: red;
+            font-size: 11vw;
+           
+        }
+    
+        #cameraBtn{
+           margin-top: -23vw;
+           margin-left: 9vw;
+           border-radius: 50%;
+           width: 15vw;
+           height: 15vw;
+           position: absolute;
+           -webkit-box-shadow: none !important;
+           background: transparent;
+        }
+    
+    
+        .hide-card {
+            -webkit-box-shadow: none!important;
+           // background-color: aqua;
+            width: 60%;
+            margin-left: 20%;
+          }
+          
+          .custom-avatar {
+            margin-top: 4%;
+            height: 45vw;
+            width: 45vw;
+            border: 1px solid #fff;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+          }
+    
+}

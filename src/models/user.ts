@@ -8,6 +8,8 @@ export interface UserRegister {
     email: string;
     password: string;
     confirm_password: string;
+    latitude: number;
+    longitude: number;
 }
 
 export interface UserLoged {
