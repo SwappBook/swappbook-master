@@ -129,6 +129,10 @@ hr{
   position: relative;
   bottom: 0;
   padding: 1%;
+  word-wrap:break-word;
+  text-overflow: ellipsis;
+  //white-space: nowrap;
+  overflow: hidden;
 }
  #eye{
    bottom: 0;
@@ -139,6 +143,10 @@ hr{
   }
   .col2{
     padding-left: 5%;
+  }
+
+  .textoFijo{
+    text-overflow: ellipsis;
   }
   
 }

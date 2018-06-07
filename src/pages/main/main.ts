@@ -52,16 +52,23 @@ export class MainPage {
 
     this.prodList.forEach(element => {
       element.forEach(res => {
-        let a = {
-          distance:this.calculateDistance(loc.lat,res.latitude,loc.lng,res.longitude),
-          prod: res
+        let abc = this.treeMapItems.filter((v) => {
+            if (v.prod.key.toLowerCase().indexOf(res.key.toLowerCase()) > -1) {
+              return true;
+            }
+            return false;
+          });
+        if (abc.length == 0){
+          let a = {
+            distance:this.calculateDistance(loc.lat,res.latitude,loc.lng,res.longitude),
+            prod: res
+          }
+          this.treeMapItems.push(a)
         }
-        this.treeMapItems.push(a)
       });
     });
 
     this.treeMapItems.sort();
-    console.log(this.treeMapItems)
   }
 
 
@@ -91,8 +98,6 @@ calculateDistance(lat1:number,lat2:number,long1:number,long2:number):number{
   let dis = (12742 * Math.asin(Math.sqrt(a))); // 2 * R; R = 6371 km
   return dis;
 }
-
-
 
   getLocate(){
     this.geolocation.getCurrentPosition().then((resp) => {

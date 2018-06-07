@@ -2,7 +2,7 @@ import { ProductListService } from './../../service/product-list.service';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { ProductWithImage } from '../../models/product';
+import { ProductWithImage, orderByDistance, Product } from '../../models/product';
 import { Observable } from 'rxjs/Observable';
 
 /**
@@ -21,9 +21,9 @@ export class SearcherPage {
 
   tabBarElement: any;
 
-  prodList: Observable<ProductWithImage[]>;
-  generalList:Array<ProductWithImage> = [];
-  FilterList:Array<ProductWithImage> = [];
+  prodList:  Array<orderByDistance> = [];
+  generalList:Array<Product> = [];
+  FilterList:Array<Product> = [];
   
   cat = '';
   checkItems = '';
@@ -36,6 +36,7 @@ export class SearcherPage {
   }
 
   ionViewDidLoad() {
+    this.prodList = this.navParams.get('prodList')
     this.initializeItems();
     this.tabBarElement.style.display = 'none'
   }
@@ -46,22 +47,10 @@ export class SearcherPage {
   }
 
   initializeItems(): void {
-    this.prodList = this.product.getProductList()
-    .snapshotChanges()
-    .map(
-      changes => {
-        return changes.map(
-          c => ({
-            key: c.payload.key, ... c.payload.val()
-          })
-        )
-      }
-    );
 
     this.prodList.forEach(element => {
-      element.forEach(res => {
-        this.generalList.push(res)
-      });
+      
+        this.generalList.push(element.prod)
     });
 
     this.igualarArrays();

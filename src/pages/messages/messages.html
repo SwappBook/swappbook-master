@@ -6,16 +6,16 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>Messages</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Mensajes</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-list>
-    <ion-item *ngFor='let chat of chatRooms | async' detail-push navPush="ChatPage" [navParams]="{chatKey:getDataOfChatRoom(chat.value).chatID,comprador:getDataOfChatRoom(chat.value).comprador,vendedor:getDataOfChatRoom(chat.value).vendedor}">
+    <ion-item id="rounded" *ngFor='let chat of chatRooms | async' detail-push navPush="ChatPage" [navParams]="{chatKey:getDataOfChatRoom(chat.value).chatID,comprador:getDataOfChatRoom(chat.value).comprador,vendedor:getDataOfChatRoom(chat.value).vendedor,producto:getDataOfChatRoom(chat.value).producto}">
       {{ getName(getDataOfChatRoom(chat.value).comprador,getDataOfChatRoom(chat.value).vendedor) }} - {{ getInfoLibro(getDataOfChatRoom(chat.value).producto).titulo }}
     </ion-item>
   </ion-list>

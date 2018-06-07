@@ -82,4 +82,17 @@ page-main {
         }
     }
 
+    #reservado{
+        text-align: center;
+        display: inline-block;
+        width: 100%;
+        span{
+           color: lightgray;
+           // font-size: 15pt;
+            font-weight: bold;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+        }
+    }
+
 }

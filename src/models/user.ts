@@ -18,3 +18,4 @@ export interface UserLoged {
     latitude: number;
     longitude: number;
 }
+

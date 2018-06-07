@@ -6,19 +6,21 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>searcher</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Buscador</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
+
+   
     <div id="search-container4">
+        <img class="img" src="assets/imgs/mess.png">
         <form id="search-form8">
-          <ion-searchbar (ionInput)="getItems($event)" placeholder="" name=""></ion-searchbar>
-          
-          <ion-searchbar (ionInput)="getItemsAutor($event)" placeholder="" name=""></ion-searchbar>
+          <ion-searchbar class="search"  (ionInput)="getItems($event)" placeholder="Titulo..." name=""></ion-searchbar>
+          <ion-searchbar (ionInput)="getItemsAutor($event)" placeholder="Autor..." name=""></ion-searchbar>
           <ion-item id="search-select3">
             <ion-label>
               Categoria
@@ -58,14 +60,14 @@
                 <ion-radio value="Gratis"></ion-radio>
               </ion-item>
               </ion-list>
-          
-          <button (click)="buscar()" id="search-button5" ion-button color="assertive" block>
+
+          <button detail-push navPush="ResultPage" [navParams]="{prodList:FilterList}" (click)="buscar()" id="search-button5" ion-button color="assertive" block>
             Buscar
           </button>
 
-          <button (click)="clear()" id="search-button5" ion-button color="assertive" block>
+          <!-- <button (click)="clear()" id="search-button5" ion-button color="assertive" block>
               Limpiar
-            </button>
+            </button> -->
         </form>
       </div>
 </ion-content>

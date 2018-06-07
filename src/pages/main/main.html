@@ -8,13 +8,13 @@
 
   <ion-navbar color="primary" >
     <ion-buttons start left>
-      <button ion-button icon-only detail-push navPush="ProfilePage" [navParams]="{prodList:prodList}">
+      <button ion-button icon-only detail-push navPush="ProfilePage" [navParams]="{prodList:prodList}" >
         <ion-icon name="person"></ion-icon>
       </button>
     </ion-buttons>
     <ion-title>Main</ion-title>
     <ion-buttons end right>
-      <button ion-button icon-only detail-push navPush="SearcherPage">
+      <button ion-button icon-only detail-push navPush="SearcherPage" [navParams]="{prodList:treeMapItems}">
         <ion-icon name="search"></ion-icon>
       </button>
     </ion-buttons>
@@ -36,15 +36,19 @@
     </div>
     <div class="info-item">
       <div id="title">{{prod.prod.titulo}}</div>
-      <div id="venta" *ngIf="prod.prod.accion == 'Vendo'">
+      <div id="venta" *ngIf="prod.prod.accion == 'Vendo' && prod.prod.estado == false">
         <span> Venta {{prod.prod.precio}}</span>
         <ion-icon name="logo-euro" color="primary"></ion-icon>
       </div >
-      <div id="cambio" *ngIf="prod.prod.accion == 'Cambio'">
+      <div id="cambio" *ngIf="prod.prod.accion == 'Cambio' && prod.prod.estado == false">
           <span >Cambio</span>
         </div >
-        <div id="gratis" *ngIf="prod.prod.accion == 'Gratis'">
+        <div id="gratis" *ngIf="prod.prod.accion == 'Gratis' && prod.prod.estado == false">
             <span >Gratis!!</span>
+          </div >
+        
+          <div id="reservado" *ngIf= "prod.prod.estado == true">
+            <span >No disponible</span>
           </div >
     </div>
       

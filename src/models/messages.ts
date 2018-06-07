@@ -16,6 +16,7 @@ export interface Message{
     destinatario:string;
     message:string;
     date:Date;
+
 }
 
 export const snapshotToArray = snapshot => {

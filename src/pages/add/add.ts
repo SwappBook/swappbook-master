@@ -76,6 +76,7 @@ export class AddPage {
   addProduct(prod: Product) {
     prod.latitude = this.userData.latitude
     prod.longitude = this.userData.longitude
+    prod.estado = false;
     this.productListService.addProduct(prod).then(ref => {
       var i = 1;
       this.slideData.forEach(element => {

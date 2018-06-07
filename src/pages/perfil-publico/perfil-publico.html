@@ -14,7 +14,7 @@
 
 
 
-<ion-content class="card">
+<ion-content class="card" class="content">
   <ion-card text-center class="hide-card">
          <img src="{{ profilePhoto }}" class="custom-avatar"/>
      <h2> {{userData.name}}</h2>
@@ -28,15 +28,15 @@
    <button ion button (click)="selectPhoto()">Seleccionar foto</button> -->
    <ion-grid class="button-group">
        <ion-row >
-        <ion-col ><button ion-button color="ourColor" style="width:100%" (click)="getLibrosUser()">Mis libros
+        <ion-col ><button ion-button color="ourColor" style="width:100%" (click)="getLibrosUser()">Sus libros
         </button></ion-col>
-        <ion-col ><button ion-button color="ourColor" style="width:100%">Favoritos</button></ion-col>
-        <ion-col ><button ion-button color="ourColor" style="width:100%">Historial</button></ion-col>
+      <!--  <ion-col ><button ion-button color="ourColor" style="width:100%" (click)="hideItem()" >Favoritos</button></ion-col> -->
+       <!-- <ion-col ><button ion-button color="ourColor" style="width:100%">Historial</button></ion-col> -->
       </ion-row>
    </ion-grid>
 
-   <ion-row >
-    <ion-col  col-6 *ngFor="let prod of userLista"
+   <ion-row class="row2" *ngIf="hide" >
+    <ion-col class="col2" col-6 *ngFor="let prod of userLista"
     detail-push navPush="InfoLibroPage" [navParams]="{prod:prod,slideData:getImages(prod.key)}">
     <div class="header-banner">
       <ion-slides class="home-slide" pager="true">

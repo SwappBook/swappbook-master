@@ -7,10 +7,11 @@
 
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>chat</ion-title>
     <ion-buttons end right *ngIf="this.vendedorKey == userID">
         <button ion-button icon-only (click)="aceptarUser()">
+          <span id="reservar">Reservar</span>
           <ion-icon name="checkbox-outline"></ion-icon>
         </button>
       </ion-buttons>
@@ -19,7 +20,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content >
     <ion-list>
         <ion-item *ngFor="let chat of message | async" no-lines>
           <div class="chat-status" text-center *ngIf="chat.remitente === '';else message">
@@ -36,25 +37,31 @@
             </div>
             <div class="chat-message" text-left *ngIf="chat.remitente !== userID">
               <div class="left-bubble">
-                <span class="msg-name">{{chat.remitente}}</span>
+               <!-- <span class="msg-name">{{chat.destinatario}}</span> -->
+               <span class="msg-name">Usuario</span>
                 <!--<span class="msg-date">{{chat.sendDate | date:'short'}}</span>-->
                 <p text-wrap>{{chat.message}}</p>
               </div>
+              
             </div>
           </ng-template>
         </ion-item>
       </ion-list>
 </ion-content>
 
-<ion-footer>
+<ion-footer class="footer">
+ 
   <ion-grid>
     <ion-row>
       <ion-col col-10>
-        <ion-input type="text" placeholder="Escribir mensaje..." [(ngModel)]="data.message" name="message"></ion-input>
+          <ion-item no-lines id="rounded">
+            <ion-input type="text" placeholder="Escribir mensaje..." [(ngModel)]="data.message" name="message"></ion-input>
+          </ion-item>
       </ion-col>
       <ion-col col-2 (click)="sendMessage()">
-        <ion-icon name="paper-plane"></ion-icon>
+        <ion-icon  color="primary" id="sendIcon" name="paper-plane"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-grid>
+
 </ion-footer>

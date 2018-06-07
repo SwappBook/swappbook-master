@@ -1,0 +1,46 @@
+
+-->
+<ion-header>
+
+  <ion-navbar color="primary" >
+    <ion-buttons start left>
+
+    </ion-buttons>
+    <ion-title>Resultados</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="col">
+  <ion-row >
+    <ion-col  col-6 *ngFor="let prod of treeMapItems"
+    detail-push navPush="InfoLibroPage" [navParams]="{prod:prod.prod,slideData:getImages(prod.key)}">
+    <div class="header-banner">
+      <ion-slides class="home-slide" pager="true">
+        <ion-slide *ngFor="let slide of getImages(prod.key)" >
+          <img  class="image" src="{{slide}}"/>
+        </ion-slide>
+      </ion-slides>
+    </div>
+    <div class="info-item">
+      <div id="title">{{prod.titulo}}</div>
+      <div id="venta" *ngIf="prod.accion == 'Vendo' && prod.estado == false">
+        <span> Venta {{prod.precio}}</span>
+        <ion-icon name="logo-euro" color="primary"></ion-icon>
+      </div >
+      <div id="cambio" *ngIf="prod.accion == 'Cambio' && prod.estado == false">
+          <span >Cambio</span>
+        </div >
+        <div id="gratis" *ngIf="prod.accion == 'Gratis' && prod.estado == false">
+            <span >Gratis!!</span>
+          </div >
+
+          <div id="resultado" *ngIf=" prod.estado == true">
+            <span >No disponible</span>
+          </div >
+    </div>
+      
+    </ion-col>
+  </ion-row> 
+</ion-content>
